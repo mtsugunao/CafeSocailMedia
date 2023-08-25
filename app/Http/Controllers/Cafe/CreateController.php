@@ -31,8 +31,6 @@ class CreateController extends Controller
             $image = $request->file('image');
             $path = $image->store('public/' . 'cafe');
             $cafe->image = $path;
-        }else{
-            $cafe->image = "defaul.png";
         }
         $cafe->save();
         return redirect()->route('cafe.new')->with('feedback.success', "Cafe infomation submitted successfully!");

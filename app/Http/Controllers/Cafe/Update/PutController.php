@@ -30,7 +30,7 @@ class PutController extends Controller
         }
         if ($request->hasFile('image')) {
             // Delete the existing image file
-            if ($cafe->image !== "default.png") {
+            if ($cafe->image !== null) {
                 $path = str_replace('public/', '', $cafe->image);
                 Storage::disk('public')->delete($path);
             }
