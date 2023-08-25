@@ -21,12 +21,14 @@
         ?>
     <img src="{{ asset('storage/'.$image) }}" width="54" height="54" alt="">
     @endif
+    @auth
     <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}">Modify</a>
     <form action="{{ route('cafe.delete', ['cafeId' => $cafe->id]) }}" method="post">
         @method('DELETE')
         @csrf
         <button type="submit">Delete</button>
     </form>
+    @endauth
     @endforeach
 </body>
 </html>

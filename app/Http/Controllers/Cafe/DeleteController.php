@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
 use Illuminate\Support\Facades\Storage;
+
 class DeleteController extends Controller
 {
     /**
