@@ -15,16 +15,21 @@
     @endauth
     <div>
     @foreach($posts as $post)
+        @foreach($post->images as $image)
+            <img src="{{ asset('storage/'. $image->name) }}" width="54" height="54" alt="">
+        @endforeach
         <p>Name: {{ $post->cafe->name }}</p>
         <p>Content: {{ $post->content }}</p>
-        @auth
+        @if(\Illuminate\Support\Facades\Auth::id() === $post->user_id)
         <a href="{{ route('post.update.show', ['postId' => $post->id]) }}">Modify</a>
         <form action="{{ route('post.delete', ['postId' => $post->id]) }}" method="post">
         @method('DELETE')
         @csrf
         <button type="submit">Delete</button>
         </form>
-        @endauth
+        @else
+        You're not allowed to Modify
+        @endif
     @endforeach
     </div>
 </body>

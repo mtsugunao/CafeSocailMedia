@@ -82,6 +82,16 @@
             <p style="color: red;">{{ $message }}</p>
             @enderror
         </div>
+        <div id="menu-fields">
+            <!-- menu field added here -->
+        </div>
+        @error('menu_name.*')
+        <div class="invalid-feedback" style="color: red;">{{ $message }}</div>
+        @enderror
+        @error('menu_price.*')
+        <div class="invalid-feedback" style="color: red;">{{ $message }}</div>
+        @enderror
+        <button type="button" id="add-menu">More mune</button>
         <div>
             <input type="submit" value="Submit Cafe Information">
         </div>
@@ -128,6 +138,28 @@
             }
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const addMenuButton = document.getElementById('add-menu');
+            const menuFieldsContainer = document.getElementById('menu-fields');
+            addMenuButton.addEventListener('click', function() {
+                const newMenuField = document.createElement('div');
+                newMenuField.className = 'menu-field';
+                newMenuField.innerHTML = `
+                <input type="text" name="menu_name[]" placeholder="Menu name" value= "{{ old('menu_name[]') }}">
+                <input type="text" name="menu_price[]" placeholder="Price" value="{{ old('menu_price[]') }}">
+                <button type="button" class="remove-menu">Delete</button>
+            `;
+                menuFieldsContainer.appendChild(newMenuField);
+                // delete button
+                const removeButtons = menuFieldsContainer.querySelectorAll('.remove-menu');
+                removeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        button.closest('.menu-field').remove();
+                    });
+                });
+            });
+        });
 </script>
 
 </body>

@@ -29,7 +29,7 @@ class CreateRequest extends FormRequest
             'streetAddress' => 'required',
             'postalCode' => 'required|max:6',
             'description' => 'nullable|string',
-            'parking' => 'nullable|string',
+            'parking' => 'nullable|string'
         ];
     }
 
@@ -63,6 +63,14 @@ class CreateRequest extends FormRequest
 
     public function description(): string {
         return $this->input('description');
+    }
+
+    public function menu(): iterable {
+        return $this->input('menu_name');
+    }
+
+    public function price(): iterable {
+        return $this->input('menu_price');
     }
 
 }

@@ -16,4 +16,8 @@ class Post extends Model
     public function cafe() {
         return $this->belongsTo(Cafe::class);
     }
+
+    public function images() {
+        return $this->belongsToMany(Image::class, 'post_images')->using(PostImage::class);
+    }
 }
