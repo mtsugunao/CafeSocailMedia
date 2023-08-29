@@ -6,29 +6,39 @@
     <title>Document</title>
 </head>
 <body>
-    @if (session('feedback.success'))
-        <p style="color: green">{{ session('feedback.success') }}</p>
-    @endif
-    @foreach($cafes as $cafe)
-    <p>{{ $cafe->name }} {{ $cafe->country }} {{ $cafe->province }} {{ $cafe->city }} {{$cafe->street_address }} {{ $cafe->postalcode }}</p>
+@if (session('feedback.success'))
+    <p style="color: green">{{ session('feedback.success') }}</p>
+@endif
+
+@foreach($cafes as $cafe)
+    <p>{{ $cafe->name }} {{ $cafe->country }} {{ $cafe->province }} {{ $cafe->city }} {{ $cafe->street_address }} {{ $cafe->postalcode }}</p>
     <p>{{ $cafe->parking }}</p>
     <p>{{ $cafe->description }}</p>
+
+    @foreach($menus as $menu)
+        @if($cafe->id === $menu->cafe_id)
+            <p>{{ $menu->name }} {{ $menu->price }}</p>
+        @endif
+    @endforeach
+
     @if ($cafe->image === null)
         <img src="{{ asset('default.png') }}" width="54" height="54" alt="">
     @else
         <?php
-        $image = str_replace('public/', '', $cafe->image);
+            $image = str_replace('public/', '', $cafe->image);
         ?>
-    <img src="{{ asset('storage/'.$image) }}" width="54" height="54" alt="">
+        <img src="{{ asset('storage/'.$image) }}" width="54" height="54" alt="">
     @endif
+
     @auth
-    <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}">Modify</a>
-    <form action="{{ route('cafe.delete', ['cafeId' => $cafe->id]) }}" method="post">
-        @method('DELETE')
-        @csrf
-        <button type="submit">Delete</button>
-    </form>
+        <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}">Modify</a>
+        <form action="{{ route('cafe.delete', ['cafeId' => $cafe->id]) }}" method="post">
+            @method('DELETE')
+            @csrf
+            <button type="submit">Delete</button>
+        </form>
     @endauth
-    @endforeach
+@endforeach
+
 </body>
 </html>

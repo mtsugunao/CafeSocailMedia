@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cafe\Update;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
+use App\Models\Menu;
 
 class ShowController extends Controller
 {
@@ -15,7 +16,8 @@ class ShowController extends Controller
     {
         $cafeId = (int) $request->route('cafeId');
         $cafe = Cafe::where('id', $cafeId)->firstOrFail();
-        return view('cafe.update')->with('cafe', $cafe);
+        $menus = Menu::where('cafe_id', $cafeId)->get();
+        return view('cafe.update')->with('cafe', $cafe)->with('menus', $menus);
 
     }
 }

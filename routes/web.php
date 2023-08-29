@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
     //routing for deleting a post
     Route::delete('/post/delete/{postId}', \App\Http\Controllers\Post\DeleteController::class)->name('post.delete');
 
+    //routing for deleting a menu
+    Route::delete('/cafe/delete/menu/{menuId}', \App\Http\Controllers\Cafe\Menu\DeleteController::class)->name('cafe.delete.menu');
+
 });
 
 require __DIR__.'/auth.php';
