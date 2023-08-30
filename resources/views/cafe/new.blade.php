@@ -108,7 +108,7 @@
              
                 <?php
                 $caProvince = [
-                    'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and labrador', 'Nova Scotia', 'Prince Edward Island', 'Quebec',
+                    'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and labrador', 'Nova Scotia', 'Ontario', 'Prince Edward Island', 'Quebec',
                     'Saskatchewan', 'Northwest Territories', 'Nunavut', 'Yukon'
                 ];
                 ?>
