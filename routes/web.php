@@ -31,10 +31,17 @@ Route::middleware('auth')->group(function () {
 //routing for creating a new cafe, modifying, and deleting
 
 Route::get('/cafe/detail', \App\Http\Controllers\Cafe\DetailController::class)->name('cafe.detail');
-
+Route::get('/cafe/detail/{cafeId}', \App\Http\Controllers\Cafe\Detail\ShowController::class)->name('cafe.detail.show')->where('cafeId', '[0-9]+');
 
 //routing for creating a new post, updating, and deleting
 Route::get('/post', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
+
+//routing for searching a specific cafe by keyword or province
+Route::get('/cafe/search/keyword', \App\Http\Controllers\Cafe\Search\KeywordController::class)->name('cafe.search.keyword');
+Route::get('/cafe/search/province', \App\Http\Controllers\Cafe\Search\ProvinceController::class)->name('cafe.search.province');
+Route::get('/cafe/search', function () {
+    return view('cafe.search');
+})->name('cafe.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/cafe/new', \App\Http\Controllers\Cafe\NewController::class)->name('cafe.new');
