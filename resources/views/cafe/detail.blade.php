@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 @if (session('feedback.success'))
@@ -11,9 +12,8 @@
 @endif
 
 @foreach($cafes as $cafe)
-    <p>{{ $cafe->name }} {{ $cafe->country }} {{ $cafe->province }} {{ $cafe->city }} {{ $cafe->street_address }} {{ $cafe->postalcode }}</p>
-    <p>{{ $cafe->parking }}</p>
-    <p>{{ $cafe->description }}</p>
+<a href="{{ route('cafe.detail.show', ['cafeId' => $cafe->id]) }}">{{ $cafe->name }}</a>
+    <p> {{ $cafe->country }} {{ $cafe->province }} {{ $cafe->city }}</p>
 
     @foreach($menus as $menu)
         @if($cafe->id === $menu->cafe_id)

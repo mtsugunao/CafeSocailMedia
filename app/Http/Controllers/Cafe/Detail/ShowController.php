@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Cafe\Detail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
+use App\Models\Post;
+use App\Services\PostService;
 
 class ShowController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, PostService $postService)
     {
         $cafeId = (int) $request->route('cafeId');
         $cafe = Cafe::where('id', $cafeId)->firstOrFail();
-        return view('cafe.specific')->with('cafe', $cafe);
+        $posts = $postService->getPostsById($cafeId);
+        return view('cafe.specific')->with('cafe', $cafe)->with('posts', $posts);
     }
 }

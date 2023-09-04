@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Post Form</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <h1>Cafe SNS</h1>
@@ -16,9 +17,12 @@
     <div>
     @foreach($posts as $post)
         @foreach($post->images as $image)
-            <img src="{{ asset('storage/'. $image->name) }}" width="54" height="54" alt="">
+        <?php
+            $image = str_replace('public/', '', $image->name);
+        ?>
+        <img src="{{ asset('storage/'.$image) }}" width="54" height="54" alt="">
         @endforeach
-        <p>Name: {{ $post->cafe->name }}</p>
+        <p>Name: {{ $post->cafe ? $post->cafe->name : 'Cafe not available' }}</p>
         <p>Content: {{ $post->content }}</p>
         @if(\Illuminate\Support\Facades\Auth::id() === $post->user_id)
         <a href="{{ route('post.update.show', ['postId' => $post->id]) }}">Modify</a>

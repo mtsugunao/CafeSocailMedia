@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/cafe/update/{cafeId}', \App\Http\Controllers\Cafe\Update\PutController::class)->name('cafe.update.put')->where('cafeId', '[0-9]+');
     Route::delete('/cafe/delete/{cafeId}', \App\Http\Controllers\Cafe\DeleteController::class)->name('cafe.delete');
 
-    Route::get('/post/new', \App\Http\Controllers\Post\NewController::class)->name('post.new');
     Route::post('/post/create', \App\Http\Controllers\Post\CreateController::class)->name('post.create');
 
     //routing for updating a post
