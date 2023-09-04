@@ -12,6 +12,10 @@ class PostService {
         return Post::with('images')->orderBy('created_at', 'DESC')->get();
     }
 
+    public function getPostsById(int $cafeId) {
+        return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->get();
+    }
+
     public function checkOwnPost(int $userId, int $postId): bool {
         $post = Post::where('id', $postId)->first();
         if(!$post){
@@ -38,11 +42,11 @@ class PostService {
         });
     }
 
-    public function deletePost(int $postId){
-        DB::transaction(function () use ($postId){
+    public function deletePost(int $postId) {
+        DB::transaction(function () use ($postId) {
             $post = Post::where('id', $postId)->firstOrFail();
-            $post->images()->each(function ($image) use ($post){
-                $filePath = 'public/' . $image->name;
+            $post->images()->each(function ($image) use ($post) {
+                $filePath =  $image->name;
                 if(Storage::exists($filePath)){
                     Storage::delete($filePath);
                 }
