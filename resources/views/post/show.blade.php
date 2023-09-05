@@ -11,9 +11,6 @@
     @if(session('feedback.success'))
     <p style="color: green">{{ session('feedback.success') }}</p>
     @endif
-    @auth
-    <a href="{{ route('post.new') }}">Do Post</a>
-    @endauth
     <div>
     @foreach($posts as $post)
         @foreach($post->images as $image)
@@ -34,6 +31,7 @@
         @else
         You're not allowed to Modify
         @endif
+        @livewire('like', ['post' => $post])
     @endforeach
     </div>
 </body>
