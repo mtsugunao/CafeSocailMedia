@@ -15,6 +15,10 @@ class Post extends Model
         'content',
     ];
 
+    protected $withCount = [
+        'likes',
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -26,4 +30,18 @@ class Post extends Model
     public function images() {
         return $this->belongsToMany(Image::class, 'post_images')->using(PostImage::class);
     }
-}
+
+    public function likedBy() {
+        return $this->belongsToMany(User::class, 'post_likes');
+    }
+
+    public function likes() {
+        return $this->hasMany(PostLike::class);
+    }
+
+    public function isLikedBy(User $user)
+    {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
+    }
