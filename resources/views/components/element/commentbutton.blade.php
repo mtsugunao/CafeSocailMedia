@@ -1,0 +1,3 @@
+<button onclick="location.href='{{ $href }}'">
+<svg width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#429e83" stroke="#429e83"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#429e83;}</style> </defs> <g id="comment"> <path class="cls-1" d="M26,3H6A3,3,0,0,0,3,6V22a3,3,0,0,0,3,3H21.94a1,1,0,0,1,.69.27l4.78,3.53A1,1,0,0,0,28,29a1,1,0,0,0,.45-.11A1,1,0,0,0,29,28V6A3,3,0,0,0,26,3Zm1,23L23.86,23.7a3,3,0,0,0-1.92-.7H6a1,1,0,0,1-1-1V6A1,1,0,0,1,6,5H26a1,1,0,0,1,1,1Z"></path> </g> </g></svg>
+</button>

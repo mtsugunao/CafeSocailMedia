@@ -62,6 +62,10 @@ Route::middleware('auth')->group(function () {
     //routing for deleting a menu
     Route::delete('/cafe/delete/menu/{menuId}', \App\Http\Controllers\Cafe\Menu\DeleteController::class)->name('cafe.delete.menu');
 
+    //routing for comment
+    Route::get('/post/comment/{postId}', \App\Http\Controllers\Post\CommentShowController::class)->name('post.comment.show');
+    Route::post('/post/comment/{postId}', \App\Http\Controllers\Post\CommentController::class)->name('post.comment.save');
+
 });
 
 require __DIR__.'/auth.php';

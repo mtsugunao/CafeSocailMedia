@@ -32,6 +32,8 @@
         You're not allowed to Modify
         @endif
         @livewire('like', ['post' => $post])
+        <x-element.commentbutton :href="route('post.comment.show', ['postId' => $post->id])">
+        </x-element.commentbutton>
     @endforeach
     </div>
 </body>
