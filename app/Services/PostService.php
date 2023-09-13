@@ -16,6 +16,10 @@ class PostService {
         return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->get();
     }
 
+    public function getPostsByUserId(int $userId) {
+        return Post::where('user_id', $userId)->with('images')->orderBy('created_at', 'DESC')->get();
+    }
+
     public function checkOwnPost(int $userId, int $postId): bool {
         $post = Post::where('id', $postId)->first();
         if(!$post){

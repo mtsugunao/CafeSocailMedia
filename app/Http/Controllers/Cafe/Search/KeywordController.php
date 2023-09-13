@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cafe\Search;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
+use Illuminate\Support\Facades\DB;
 
 class KeywordController extends Controller
 {
@@ -13,16 +14,22 @@ class KeywordController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $keyword = $request->input('keyword');
+        $keywords = $request->input('keyword');
 
-        if(isset($keyword)){
-        $searchResults = Cafe::where('name', 'like', '%' . $keyword . '%')
-        ->orWhere('country', 'like', '%' . $keyword . '%')
-        ->orWhere('province', 'like', '%' . $keyword . '%')
-        ->orWhere('city', 'like', '%' . $keyword . '%')
-        ->orWhere('street_address', 'like', '%' . $keyword . '%')
-        ->orWhere('postalcode', 'like', '%' . $keyword . '%')
-        ->get();
+        if(isset($keywords)){
+            $arrayKeywords = explode(" ", $keywords);
+            $query = DB::table('cafes');
+            foreach($arrayKeywords as $keyword){
+                $query->where(function ($query) use ($keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%')
+                           ->orWhere('country', 'like', '%' . $keyword . '%')
+                           ->orWhere('province', 'like', '%' . $keyword . '%')
+                           ->orWhere('city', 'like', '%' . $keyword . '%')
+                           ->orWhere('street_address', 'like', '%' . $keyword . '%')
+                           ->orWhere('postalcode', 'like', '%' . $keyword . '%');
+            });
+        }
+            $searchResults = $query->get();
 
         return view('cafe.result')->with('searchResults', $searchResults);
         }
