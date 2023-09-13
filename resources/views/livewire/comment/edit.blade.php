@@ -1,6 +1,6 @@
 <div>
     <a wire:click.prevent="openModal({{ $edit->id }})"
-        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+        class="block py-2 px-4 hover:bg-gray-100">
         Edit
     </a>
     @if($showModal)
@@ -15,16 +15,16 @@
                             </div>
                         @endif 
                         <form wire:submit.prevent="save({{ $edit->id }})">
-                        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
                             <label for="comment" class="sr-only">Your comment</label>
                             <textarea name="comment" id="comment" wire:model.defer="comment" rows="6"
-                                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800" placeholder="Edit">{{ $comment }}</textarea>
+                                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none" placeholder="Edit">{{ $comment }}</textarea>
                             @error('comment')
                             <x-alert.error :closeError="$closeError">{{ $message }}</x-alert.error>
                             @enderror
                         </div>
                             <button type="submit" 
-                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-lime-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-lime-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
                                 Edit
                             </button>
                         </form>

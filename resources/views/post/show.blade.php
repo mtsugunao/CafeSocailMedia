@@ -20,6 +20,7 @@
         <img src="{{ asset('storage/'.$image) }}" width="54" height="54" alt="">
         @endforeach
         <p>Name: {{ $post->cafe ? $post->cafe->name : 'Cafe not available' }}</p>
+        <a href="{{ route('cafeseeker', ['userId' => $post->user->id]) }}">{{ $post->user->name }}</a>
         <p>Content: {{ $post->content }}</p>
         @if(\Illuminate\Support\Facades\Auth::id() === $post->user_id)
         <a href="{{ route('post.update.show', ['postId' => $post->id]) }}">Modify</a>

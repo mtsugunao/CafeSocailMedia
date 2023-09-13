@@ -36,6 +36,9 @@ Route::get('/cafe/detail/{cafeId}', \App\Http\Controllers\Cafe\Detail\ShowContro
 //routing for creating a new post, updating, and deleting
 Route::get('/post', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
 
+//routing for a specific user
+Route::get('/cafeseekers/{userId}', \App\Http\Controllers\ShowUserController::class)->name('cafeseeker')->where('userId', '[0-9]+');
+
 //routing for searching a specific cafe by keyword or province
 Route::get('/cafe/search/keyword', \App\Http\Controllers\Cafe\Search\KeywordController::class)->name('cafe.search.keyword');
 Route::get('/cafe/search/province', \App\Http\Controllers\Cafe\Search\ProvinceController::class)->name('cafe.search.province');
