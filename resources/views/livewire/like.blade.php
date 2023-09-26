@@ -1,12 +1,14 @@
-<span class="inline-flex items-center text-sm">
+<div class="flex items-center">
   @auth
-  <button wire:click="like" class="inline-flex space-x-2 {{ $post->isLikedBy($user) ? 'text-green-400 hover:text-green-500' : 'text-gray-400 hover:text-gray-500' }} focus:outline-none focus:ring-0">
+  <button wire:click="like" class="w-12 mt-1 group flex items-center px-3 py-2 text-base leading-6 font-medium rounded-full {{ $post->isLikedBy($user) ? 'text-green-400 hover:text-green-500' : 'text-gray-400 hover:text-gray-500' }} focus:outline-none focus:ring-0">
+  @else 
+  <button type="button" class="w-12 mt-1 group flex items-center px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800 hover:text-blue-300">
   @endauth
-    <svg class="h-5 w-5" x-description="solid/thumb-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"></path>
+    <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+      <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
     </svg>
- 
-    <span class="font-medium text-gray-900">{{ $count }}</span>
-    <span class="sr-only">likes</span>
   </button>
-</span>
+  
+  <span class="font-medium text-gray-900">{{ $count }}</span>
+  <span class="sr-only">likes</span>
+</div>

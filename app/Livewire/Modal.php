@@ -21,12 +21,6 @@ class Modal extends Component
     public $images = [];
     public $cafe;
     public $posts;
-    protected $rules = [
-        'content' => 'required|max:140',
-        'cafe_id' => 'required|exists:cafes,id',
-        'images' => 'array|max:4',
-        'images.*' => 'mimes:jpeg,png,jpg,gif|max:2048'  
-    ];
 
     public function mount($cafe, $posts)
     {
@@ -59,14 +53,18 @@ class Modal extends Component
 
     public function save($cafeId){
         $this->cafe_id = $cafeId;
-        $this->validate();
+        $this->validate([
+            'content' => 'required|max:140',
+            'cafe_id' => 'required|exists:cafes,id',
+            'images' => 'array|max:4',
+            'images.*' => 'mimes:jpeg,png,jpg,gif|max:2048' 
+        ]);
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'cafe_id' => $this->cafe_id,
             'content' =>$this->content
         ]);
 
-        
         foreach ($this->images as $image) {
             $path = $image->store('public/images');
             $imageModel = Image::create([
@@ -75,7 +73,6 @@ class Modal extends Component
             $post->images()->attach($imageModel->id);
         }
     
-
         session()->flash('success', 'Images has been successfully Uploaded.');
         $this->reset(['content', 'cafe_id', 'images']);
         $this->closeModal();

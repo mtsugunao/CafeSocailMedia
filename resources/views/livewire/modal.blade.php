@@ -24,7 +24,7 @@
                                                 {{ session('success') }}
                                             </div>
                                     @endif 
-                                    <form wire:submit.prevent="save({{ $cafe->id }} )" enctype="multipart/form-data">
+                                    <form wire:submit.prevent="save({{ $cafe->id }})" enctype="multipart/form-data">
                                         @csrf
                                         <label for="post-content">Content</label>
                                         <span>up to 140 words</span>
@@ -34,14 +34,12 @@
                                         @enderror
                                         <div class="mb-3">
                                             <label class="form-label" for="inputFile">Select Files:</label>
-                                            <input 
+                                            <input   
                                                 wire:model.defer="images"
-                                                type="file" 
-                                                name="images[]" 
+                                                type="file"  
                                                 id="inputFile"
                                                 multiple 
-                                                accept="image/*">
-                                            <div wire:loading wire:target="images">Uploading...</div>
+                                                >
                                             @error('images.*')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

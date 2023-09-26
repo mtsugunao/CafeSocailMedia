@@ -1,3 +1,5 @@
-<button onclick="location.href='{{ $href }}'">
-<svg width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#429e83" stroke="#429e83"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#429e83;}</style> </defs> <g id="comment"> <path class="cls-1" d="M26,3H6A3,3,0,0,0,3,6V22a3,3,0,0,0,3,3H21.94a1,1,0,0,1,.69.27l4.78,3.53A1,1,0,0,0,28,29a1,1,0,0,0,.45-.11A1,1,0,0,0,29,28V6A3,3,0,0,0,26,3Zm1,23L23.86,23.7a3,3,0,0,0-1.92-.7H6a1,1,0,0,1-1-1V6A1,1,0,0,1,6,5H26a1,1,0,0,1,1,1Z"></path> </g> </g></svg>
+<button onclick="location.href='{{ $href }}'" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800 hover:text-blue-300">
+    <svg class="text-center h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+    </svg>
 </button>

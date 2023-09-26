@@ -65,11 +65,11 @@ class CreateRequest extends FormRequest
         return $this->input('description');
     }
 
-    public function menu(): iterable {
+    public function menu(): ?iterable {
         return $this->input('menu_name');
     }
 
-    public function price(): iterable {
+    public function price(): ?iterable {
         return $this->input('menu_price');
     }
 
