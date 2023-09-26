@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Post Form</title>
+  <title>All Posts</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
     .post-option>summary {
@@ -32,44 +32,21 @@
     <x-navigation />
     <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div class="flex w-full mx-auto">
-        <div class="relative inline-flex justify-between items-center mx-auto align-middle">
+        <div class="relative inline-flex items-center mx-auto align-middle">
           <div class="pb-12">
 
-            <h1 class="text-center max-w-4xl text-2xl mb-5 font-bold leading-none tracking-tighter text-neutral-600 md:text-5xl lg:text-6xl lg:max-w-7xl">
-              Construct and Collaborate<br class="hidden md:block">
-              on Your Beloved Cafes!
-            </h1>
-
-            <div class="flex items-center lg:justify-between w-full lg:w-4/5 lg:flex-row flex-col mx-auto px-8 lg:space-x-4 lg:space-y-0 space-y-4 lg:px-0">
-              <div class="relative flex-grow w-4/5 lg:w-full">
-                <x-search.keyword />
-              </div>
-              <div class="relative flex-grow lg:w-1/3 w-4/5">
-                <x-search.province :caProvince="$caProvince" :ca="$ca" :us="$us" :usStates="$usStates"></x-search.province>
-              </div>
-            </div>
-
             <div class="py-10">
-              <p class="w-full font-serif text-center"><span class="md:text-3xl text-2xl font-bold sm:pr-10 sm:inline block text-center sm:mb-0 mb-5">New Posts</span>Why not try posting one yourself?</p>
+              <p class="max-w-4xl lg:max-w-6xl font-serif text-center"><span class="md:text-3xl text-2xl font-bold sm:pr-10 sm:inline block text-center sm:mb-0 mb-5">New Posts</span>Why not try posting one yourself?</p>
             </div>
 
             @if(session('feedback.success'))
             <p style="color: green">{{ session('feedback.success') }}</p>
             @endif
-            <div class="pr-5 flex justify-between">
-              <div class="md:flex hidden bg-gray-100 lg:m-10 m-5 w-1/3">
-                <p>
-                To make a post, please select a café where you visited from the navigation menu and share your experiences here for everyone to enjoy!
-                </p>
-              </div>
             <x-post.list :posts="$posts"></x-post.list>
-            </div>
           </div>
         </div>
       </div>
-      <div class="w-full flex justify-center ">
-        <a href="{{ route('post.posts') }}" class="px-6 py-3 text-gray-100 no-underline bg-lime-500 rounded hover:bg-lime-600 hover:underline hover:text-gray-200">More Posts</a>
-      </div>
+        {{ $posts->links('vendor.pagination.tailwindPagination') }}
     </div>
   </section>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
