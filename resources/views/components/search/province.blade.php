@@ -29,13 +29,13 @@
             <!-- content -->
             <div class="flex flex-col h-full">
                 <div class="overflow-y-auto flex-grow">
-                    <!-- コンテンツ -->
+
                     <form action="{{ route('cafe.search.province') }}" method="GET" id="province">
                         <div>
                             <h2 class="text-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">Canada</h2>
-                            <!-- Canada コンテンツ -->
+                            <!-- Canada content -->
                             <ul class="flex flex-wrap justify-start items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <!-- チェックボックスループ -->
+                                <!-- Checkbox -->
                                 @foreach($caProvince as $index => $province)
                                 <li class="w-1/4 lg:w-1/5 px-5 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                     <div class="flex items-center pl-3">
@@ -48,9 +48,9 @@
                         </div>
                         <div>
                             <h2 class="text-center mb-4 font-semibold text-xl text-gray-900 dark:text-white">USA</h2>
-                            <!-- USA コンテンツ -->
+                            <!-- USA content -->
                             <ul class="flex flex-wrap justify-start items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <!-- チェックボックスループ -->
+                                <!-- Checkbox -->
                                 @foreach($usStates as $index => $state)
                                 <li class="w-1/4 lg:w-1/5 px-5 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                     <div class="flex items-center pl-3">

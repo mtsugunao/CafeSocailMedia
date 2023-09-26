@@ -43,6 +43,9 @@ Route::get('/post', \App\Http\Controllers\Post\ShowController::class)->name('pos
 //routing for a specific user
 Route::get('/cafeseekers/{userId}', \App\Http\Controllers\ShowUserController::class)->name('cafeseeker')->where('userId', '[0-9]+');
 
+//Route for all posts
+Route::get('/posts', \App\Http\Controllers\Post\AllPostsShowController::class)->name('post.posts');
+
 //routing for searching a specific cafe by keyword or province
 Route::get('/cafe/search/keyword', \App\Http\Controllers\Cafe\Search\KeywordController::class)->name('cafe.search.keyword');
 Route::get('/cafe/search/province', \App\Http\Controllers\Cafe\Search\ProvinceController::class)->name('cafe.search.province');
