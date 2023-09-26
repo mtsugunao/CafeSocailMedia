@@ -41,14 +41,16 @@ class CreateController extends Controller
         }
 
         $cafe->save();
-
-        foreach ($menuNames as $index => $menuName) {
-            if (!empty($menuName)) {
-                $menu = new Menu();
-                $menu->name = $menuName;
-                $menu->price = $menuPrices[$index];
-                $menu->cafe_id = $cafe->id;  // set a cafe_id here
-                $menu->save();
+        if($menuNames != null && $menuPrices != null){
+            foreach ($menuNames as $index => $menuName) {
+                if (!empty($menuName)) {
+                    $menu = new Menu();
+                    $menu->name = $menuName;
+                    $menu->price = $menuPrices[$index];
+                    $menu->cafe_id = $cafe->id;  // set a cafe_id here
+                    $menu->save();
+                }
+            
             }
         }
 
