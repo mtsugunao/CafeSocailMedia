@@ -22,8 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post' => 'required|max:140',
-            'cafe_id' => 'required|exists:cafes,id'
+            'post' => 'required|max:140'
         ];
     }
 

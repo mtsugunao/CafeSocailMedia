@@ -20,7 +20,7 @@
             </div>
         </a>
         <div class="flex items-center">
-            <x-post.options :postId="$post->id" :userId="$post->user_id"></x-post.options>
+            <x-post.options :postId="$post->id" :userId="$post->user_id" :post="$post"></x-post.options>
         </div>
     </div>
     <div class="pl-14 pr-3">

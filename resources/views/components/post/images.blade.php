@@ -6,7 +6,7 @@
 <div x-data="{}" class="px-2">
     <div class="flex justify-start mx-2">
         @foreach($images as $image)
-        <div class="w-1/3 px-2 mt-5">
+        <div class="w-1/4 px-2 mt-5">
             <div>
                 <?php
                 $image = str_replace('public/', '', $image->name);

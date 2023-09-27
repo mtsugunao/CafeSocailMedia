@@ -20,8 +20,6 @@
   Plugins:
     - @tailwindcss/forms
 -->
-
-
     <section class="bg-gray-100">
         <x-navigation/>
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -118,11 +116,7 @@
                         </div>
 
                         <div>
-                            <label class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Profile Image</label>
-                            <input accept="image/png, image/jpeg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" name="image" type="file">
-                            @error('image')
-                            <p style="color: red;">{{ $message }}</p>
-                            @enderror
+                            <x-cafe.form.images></x-cafe.form.images>
                         </div>
 
                         <div id="menu-fields">

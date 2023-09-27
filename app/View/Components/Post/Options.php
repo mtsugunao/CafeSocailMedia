@@ -5,6 +5,7 @@ namespace App\View\Components\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Post;
 
 class Options extends Component
 {
@@ -14,10 +15,12 @@ class Options extends Component
      */
     private int $postId;
     private int $userId;
-    public function __construct(int $postId, int $userId)
+    private Post $post;
+    public function __construct(int $postId, int $userId, Post $post)
     {
         $this->postId = $postId;
         $this->userId = $userId;
+        $this->post = $post;
     }
 
     /**
@@ -27,6 +30,7 @@ class Options extends Component
     {
         return view('components.post.options')
             ->with('postId', $this->postId)
-            ->with('myPost', \Illuminate\Support\Facades\Auth::id() === $this->userId);
+            ->with('myPost', \Illuminate\Support\Facades\Auth::id() === $this->userId)
+            ->with('post', $this->post);
     }
 }
