@@ -22,8 +22,7 @@ class PutController extends Controller
         $post = Post::where('id', $request->getId())->firstOrFail();
         $post->content = $request->getPost();
         $post->user_id = $request->userId();
-        $post->cafe_id = $request->getCafeId();
         $post->save();
-        return redirect()->route('post.update.show', ['postId' => $post->id])->with('feedback.success', "Modified successfully!");
+        return redirect()->route('post.show', ['postId' => $post->id])->with('feedback.success', "Modified successfully!");
     }
 }

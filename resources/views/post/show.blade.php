@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Post Form</title>
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/css/app.css'])
+  @livewireStyles
   <style>
     .post-option>summary {
       list-style: none;
@@ -54,15 +55,16 @@
             </div>
 
             @if(session('feedback.success'))
-            <p style="color: green">{{ session('feedback.success') }}</p>
+            <p style="color: green" class="mx-auto">{{ session('feedback.success') }}</p>
             @endif
             <div class="pr-5 flex justify-between">
               <div class="md:flex hidden bg-gray-100 lg:m-10 m-5 w-1/3">
                 <p>
-                To make a post, please select a café where you visited from the navigation menu and share your experiences here for everyone to enjoy!
+                  To make a post, please select a café where you visited by searching in eigther search bar or area and share your experiences here for everyone to enjoy! If you don't see any café you wish to post,
+                  please register first.
                 </p>
               </div>
-            <x-post.list :posts="$posts"></x-post.list>
+              <x-post.list :posts="$posts"></x-post.list>
             </div>
           </div>
         </div>
@@ -72,6 +74,7 @@
       </div>
     </div>
   </section>
+  @livewireScripts
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(function() {
@@ -125,6 +128,18 @@
         );
       }
     }
+
+    const countDown = document.querySelector('#count-down');
+    const length = document.querySelector('.length');
+    const maxLength = 140;
+    countDown.addEventListener('input', () => {
+      length.textContent = maxLength - countDown.value.length;
+      if (maxLength - countDown.value.length < 0) {
+        length.style.color = 'red';
+      } else {
+        length.style.color = '#444';
+      }
+    }, false);
   </script>
 </body>
 
