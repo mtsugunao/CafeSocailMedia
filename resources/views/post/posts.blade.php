@@ -32,8 +32,8 @@
     <x-navigation />
     <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div class="flex w-full mx-auto">
-        <div class="relative inline-flex items-center mx-auto align-middle">
-          <div class="pb-12">
+        <div class="relative md:w-4/5 w-full inline-flex items-center mx-auto justify-center align-middle">
+          <div class="pb-12 w-full mx-10">
 
             <div class="py-10">
               <p class="max-w-4xl lg:max-w-6xl font-serif text-center"><span class="md:text-3xl text-2xl font-bold sm:pr-10 sm:inline block text-center sm:mb-0 mb-5">New Posts</span>Why not try posting one yourself?</p>
