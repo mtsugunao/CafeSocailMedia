@@ -12,7 +12,7 @@ class PostService {
         return Post::with('images')->orderBy('created_at', 'DESC')->paginate(5);
     }
     public function getPostsAll() {
-        return Post::with('images')->orderBy('created_at', 'DESC')->paginate(15);
+        return Post::with('images')->orderBy('created_at', 'DESC')->paginate(3);
     }
 
     public function getPostsById(int $cafeId) {

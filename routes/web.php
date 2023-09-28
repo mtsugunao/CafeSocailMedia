@@ -49,9 +49,6 @@ Route::get('/posts', \App\Http\Controllers\Post\AllPostsShowController::class)->
 //routing for searching a specific cafe by keyword or province
 Route::get('/cafe/search/keyword', \App\Http\Controllers\Cafe\Search\KeywordController::class)->name('cafe.search.keyword');
 Route::get('/cafe/search/province', \App\Http\Controllers\Cafe\Search\ProvinceController::class)->name('cafe.search.province');
-Route::get('/cafe/search', function () {
-    return view('cafe.search');
-})->name('cafe.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/cafe/new', \App\Http\Controllers\Cafe\NewController::class)->name('cafe.new');
