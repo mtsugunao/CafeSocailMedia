@@ -58,7 +58,7 @@
             <p style="color: green" class="mx-auto">{{ session('feedback.success') }}</p>
             @endif
             <div class="pr-5 flex justify-between">
-              <div class="md:flex hidden bg-gray-100 lg:m-10 m-5 w-1/3">
+              <div class="md:flex hidden bg-white lg:m-10 m-5 w-1/3">
                 <p>
                   To make a post, please select a café where you visited by searching in eigther search bar or area and share your experiences here for everyone to enjoy! If you don't see any café you wish to post,
                   please register first.

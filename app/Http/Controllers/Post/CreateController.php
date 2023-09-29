@@ -15,12 +15,14 @@ class CreateController extends Controller
      */
     public function __invoke(CreateRequest $request, PostService $postService)
     {
+        $cafeId = $request->getCafeId();
         $postService->savePost(
             $request->userId(),
             $request->getPost(),
-            $request->getCafeId(),
+            $cafeId,
             $request->images()
         );
-        return redirect()->route('post.new')->with('feedback.success', "Posted successfully!");
+        
+        return redirect()->route('cafe.detail.show', ['cafeId' => $cafeId])->with('feedback.success', "Posted successfully!");
     }
 }
