@@ -23,7 +23,7 @@ class CreateRequest extends FormRequest
     {
         return [
             'post' => 'required|max:140',
-            'cafe_id' => 'required|exists:cafes,id',
+            'cafeId' => 'exists:cafes,id',
             'images' => 'array|max:4',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
             
@@ -39,7 +39,7 @@ class CreateRequest extends FormRequest
     }
 
     public function getCafeId(): int {
-        return $this->input('cafe_id');
+        return (int) $this->route('cafeId');
     }
 
     public function images(): array {

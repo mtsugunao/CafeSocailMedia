@@ -12,11 +12,11 @@ class PostService {
         return Post::with('images')->orderBy('created_at', 'DESC')->paginate(5);
     }
     public function getPostsAll() {
-        return Post::with('images')->orderBy('created_at', 'DESC')->paginate(3);
+        return Post::with('images')->orderBy('created_at', 'DESC')->paginate(15);
     }
 
     public function getPostsById(int $cafeId) {
-        return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->get();
+        return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->paginate(15);
     }
 
     public function getPostsByUserId(int $userId) {
