@@ -72,6 +72,9 @@ Route::middleware('auth')->group(function () {
     //routing for comment
     Route::get('/post/comment/{postId}', \App\Http\Controllers\Post\CommentShowController::class)->name('post.comment.show');
     Route::post('/post/comment/{postId}', \App\Http\Controllers\Post\CommentController::class)->name('post.comment.save');
+    Route::post('/post/reply/{postId}/{commentId}', \App\Http\Controllers\Post\ReplyController::class)->name('post.reply.create')->where('commentId', '[0-9]+')->where('postId', '[0-9]+');
+    Route::put('/post/reply/{postId}/{commentId}', \App\Http\Controllers\Post\Update\ReplyController::class)->name('post.reply.put')->where('commentId', '[0-9]+')->where('postId', '[0-9]+');
+    Route::delete('/post/reply/{commentId}', \App\Http\Controllers\Post\DeleteReplyController::class)->name('post.reply.delete')->where('commentId', '[0-9]+');
 
 });
 

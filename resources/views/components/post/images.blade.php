@@ -3,10 +3,10 @@
     ])
 
 @if(count($images) > 0)
-<div x-data="{}" class="px-2">
-    <div class="flex justify-start mx-2">
+<div x-data="{}">
+    <div class="flex justify-start">
         @foreach($images as $image)
-        <div class="w-1/4 px-2 mt-5">
+        <div class="w-1/4 mt-5">
             <div>
                 <?php
                 $image = str_replace('public/', '', $image->name);

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; 
 
@@ -30,6 +31,14 @@ class PostService {
         }
 
         return $post->user_id === $userId;
+    }
+
+    public function checkOwnComment(int $userId, int $commentId): bool {
+        $comment = Comment::where('id', $commentId)->first();
+        if(!$comment){
+            return true;
+        }
+        return $comment->user_id === $userId;
     }
 
     public function savePost(int $userId, string $content, int $cafeId, array $images) {
@@ -61,6 +70,17 @@ class PostService {
                 $image->delete();
             });
             $post->delete();
+        });
+    }
+
+    public function postReply(int $commentId, string $reply, int $userId, int $postId){
+        DB::transaction(function () use ($commentId, $reply, $userId, $postId) {
+            $comment = new Comment;
+            $comment->user_id = $userId;
+            $comment->post_id = $postId;
+            $comment->comment = $reply;
+            $comment->parent_comment_id = $commentId;
+            $comment->save();
         });
     }
 }

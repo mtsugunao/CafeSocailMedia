@@ -25,7 +25,7 @@
       background: transparent;
     }
   </style>
-  @stack('js')
+  @stack('css')
 </head>
 
 <body>
