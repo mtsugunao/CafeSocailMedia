@@ -14,6 +14,9 @@ class Cafe extends Model
     public function posts() {
         return $this->hasMany(Post::class);
     }
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function menus() {
         return $this->hasMany(Menu::class);

@@ -12,4 +12,9 @@ class Menu extends Model
     public function cafe() {
         return $this->belongsTo(Cafe::class);
     }
+
+    protected $fillable = [
+        'name',
+        'price'
+    ];
 }

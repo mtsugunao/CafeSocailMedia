@@ -1,14 +1,14 @@
 @if($myPost)
 <div class="relative" x-data="{ 
                     isOpen: false}">
-    <button @click="isOpen = !isOpen" @keydown.escape="isOpen = false" id="dropdownMenuIconHorizontalButton" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
+    <button @click="isOpen = !isOpen" @keydown.escape="isOpen = false" id="dropdownMenuIconHorizontalButton" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-lg" type="button">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
         </svg>
         <span class="sr-only" aria-hidden="true">Comment settings</span>
     </button>
     <!-- Dropdown menu -->
-    <div x-show="isOpen" @click.away="isOpen = false" class="relative md:absolute w-16 md:w-24 z-10 mt-2 bg-white rounded-lg divide-y divide-gray-100 shadow-lg">
+    <div x-show="isOpen" @click.away="isOpen = false" class="relative md:absolute w-16 md:w-24 z-10 mt-2 rounded-lg divide-y divide-gray-100 shadow-lg">
         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
             <li>
                 <x-element.edit :post="$post" />

@@ -16,7 +16,7 @@
     <!-- Modal -->
     <div class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50" x-show="showModal">
         <!-- Modal inner -->
-        <div class="max-w-5xl py-3 mx-auto text-left bg-white rounded shadow-lg relative w-full sm:h-auto h-full md:w-2/3" @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+        <div class="max-w-5xl py-3 mx-auto text-left bg-white rounded shadow-lg relative w-full sm:h-auto h-full sm:w-2/3" @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
             <!-- Title / Close-->
             <header class="flex items-center justify-center relative">
                 <h1 class="text-center m-10 md:mb-4 md:text-2xl text-4xl font-semibold text-black max-w-none">Edit Post</h1>
@@ -30,7 +30,7 @@
 
             <!-- content -->
             <div class="relative">
-                <form action="{{ route('post.update.put', ['postId' => $post->id]) }}" method="post" id="edit" enctype="multipart/form-data">
+                <form action="{{ route('post.update.put', ['postId' => $post->id]) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="p-3">
@@ -51,8 +51,8 @@
                                 <p style="color: red">{{ $message }}</p>
                                 @enderror
                         </div>
-                        <div class="flex-col justify-center items-center space-x-2">
-                            <button form="edit" type="submit" class="mx-auto w-1/2 md:h-12 h-13 border border-green-500 bg-green-500 text-center text-xl font-medium text-white shadow-sm transition-all
+                        <div class="w-full flex items-center">
+                            <button type="submit" class="justify-center mx-auto sm:w-1/2 w-full h-13 border border-green-500 bg-green-500 text-center text-xl font-medium text-white shadow-sm transition-all
                     hover:border-green-700 hover:bg-green-700 focus:ring rounded-lg focus:ring-green-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">
                                 Edit
                             </button>

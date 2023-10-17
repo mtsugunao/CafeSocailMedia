@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/post/delete/{postId}', \App\Http\Controllers\Post\DeleteController::class)->name('post.delete');
 
     //routing for deleting a menu
-    Route::delete('/cafe/delete/menu/{menuId}', \App\Http\Controllers\Cafe\Menu\DeleteController::class)->name('cafe.delete.menu');
+    Route::delete('/cafe/delete/menu/{menuId}', \App\Http\Controllers\Cafe\Menu\DeleteController::class)->name('cafe.delete.menu')->where('menuId', '[0-9]+');
 
     //routing for comment
     Route::get('/post/comment/{postId}', \App\Http\Controllers\Post\CommentShowController::class)->name('post.comment.show');
