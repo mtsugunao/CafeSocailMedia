@@ -34,25 +34,35 @@
         <div class="relative items-center lg:w-4/5 w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
             <div class="flex w-full mx-auto">
                 <div class="relative pb-12 lg:w-4/5 w-full items-center mx-auto align-middle">
-                    <div class="flex-col md:flex md:flex-row mb-10">
+                    <div class="flex-col md:flex md:flex-row mb-7 items-center">
                         <div class="flex flex-col justify-center w-full items-start p-3">
-                            <h1 class="w-full text-4xl font-bold py-6">{{ $cafe->name }}</h1>
-                            <p class="text-gray-600 font-semibold text-lg">{{ $cafe->street_address }},&nbsp;<span>{{ $cafe->city}},&nbsp;</span><span>{{ $cafe->province }},&nbsp;</span><span>{{ $cafe->country }},&nbsp;</span><span>{{ $cafe->postalcode }},&nbsp;</span></p>
+                            <div class="flex flex-row justify-between w-full items-center">
+                                <h1 class="w-full text-4xl font-bold py-6">{{ $cafe->name }}</h1>
+                            </div>
+                            <p class="text-gray-600 font-semibold text-lg">{{ $cafe->street_address }},&nbsp;<span>{{ $cafe->city}},&nbsp;</span><span>{{ $cafe->province }},&nbsp;</span><span>{{ $cafe->country }},&nbsp;</span><span>{{ $cafe->postalcode }}</span></p>
                         </div>
-                        <x-post.cafe :cafe="$cafe"></x-element.edit>
+                        <div class="flex-col w-full">
+                            <div class="flex-row px-3">
+                                <div class="sm:p-2 flex justify-start px-3 py-2 md:justify-end">
+                                    <a href="{{ route('cafeseeker', ['userId' => $cafe->user->id]) }}" class="font-semibold text-sm text-gray-500 hover:underline"><span>Registered by&nbsp;</span>{{ $cafe->user->name }}</a>
+                                </div>
+                                <div class="rounded-lg sm:px-2 flex justify-start px-3 md:justify-end">
+                                    <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}" class="text-sm text-gray-500 hover:underline">Update</a>
+                                </div>
+                            </div>
+                            <x-post.cafe :cafe="$cafe"></x-element.edit>
+                        </div>
                     </div>
 
                     <div>
-                        @if(isset($cafe->menu))
-                        <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-                            <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
-                                @foreach($cafe->menu as $menu)
-                                <div class="p-6">
+                        @if(isset($cafe->menus))
+                        <div class="relative items-center w-full p-3 mx-auto max-w-7xl">
+                            <div class="grid w-full grid-cols-1 gap-6 mx-auto sm:grid-cols-2 lg:grid-cols-3">
+                                @foreach($cafe->menus as $menu)
                                     <div class="inline-flex justify-between w-full">
-                                        <h1 class="mb-8 text-xl font-semibold leading-none tracking-tighter text-neutral-600">{{ $menu->name }}</h1>
-                                        <span>${{ $menu->price }}</span>
+                                        <h1 class="mb-3 text-xl font-semibold leading-none tracking-tighter text-neutral-600">{{ $menu->name }}</h1>
+                                        <span>{{ $cafe->country === 'Canada' ? $menu->price . ' CAD' : $menu->price . ' USD' }}</span>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>

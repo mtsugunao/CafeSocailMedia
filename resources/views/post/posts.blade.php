@@ -24,9 +24,8 @@
       background: transparent;
     }
   </style>
-  @stack('js')
+   @stack('css')
 </head>
-
 <body>
   <section class="w-full bg-white dark:bg-wickeddark">
     <x-navigation />
@@ -49,60 +48,6 @@
         {{ $posts->links('vendor.pagination.tailwindPagination') }}
     </div>
   </section>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(function() {
-      $(".more-link").each(function(v_n) {
-        $(this).after('<div class="more-link-after"></div>');
-        f_lessText(v_n);
-      });
-    });
-
-    function f_moreText(v_n) {
-      var e_text = $(".more-link").eq(v_n);
-      var v_closeHeight = e_text.height();
-      var v_poenHeight = e_text.css("height", "auto").height();
-      e_text.height(v_closeHeight).animate({
-        height: v_poenHeight
-      }, 150);
-      $(".more-link-after:eq(" + v_n + ")").html(
-        '<a href="javascript:void(0)" onclick="f_lessText(' + v_n + ')">Close</a>'
-      );
-    }
-
-    function f_lessText(v_n) {
-      var e_more = $(".more-link:eq(" + v_n + ")");
-      var e_moreAfter = $(".more-link-after:eq(" + v_n + ")");
-
-      var v_max = 3;
-      if (e_more.data("max")) {
-        v_max = e_more.data("max");
-      }
-      var e_text = e_more;
-      var v_textHeight = parseFloat(e_more.css("height"));
-      var v_fontHeight = parseFloat(e_more.css("line-height"));
-      if (!v_fontHeight) {
-        v_fontHeight = parseFloat(e_more.css("font-size")) * 1.5;
-      }
-      var v_moreMaxHeight = v_fontHeight * v_max;
-      if (v_moreMaxHeight < v_textHeight) {
-        e_more.css({
-          overflow: "hidden",
-          "margin-bottom": "0"
-        });
-        e_more.height(v_moreMaxHeight);
-        e_moreAfter.css({
-          "font-size": e_text.css("font-size"),
-          "line-height": e_text.css("line-height")
-        });
-        e_moreAfter.html(
-          '<div><a href="javascript:void(0)" onclick="f_moreText(' +
-          v_n +
-          ')">･･･Read more</a></div>'
-        );
-      }
-    }
-  </script>
 </body>
 
 </html>

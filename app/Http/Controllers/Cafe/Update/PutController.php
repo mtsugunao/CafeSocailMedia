@@ -8,13 +8,14 @@ use App\Http\Requests\Cafe\UpdateRequest;
 use App\Models\Cafe;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Menu;
+use App\Services\CafeService;
 
 class PutController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(UpdateRequest $request)
+    public function __invoke(UpdateRequest $request, CafeService $cafeService)
     {
         $cafe = Cafe::where('id', $request->id())->firstOrFail();
         $cafe->name = $request->cafeName();
@@ -23,11 +24,7 @@ class PutController extends Controller
         $cafe->city = $request->city();
         $cafe->street_address = $request->streetAddress();
         $cafe->postalcode = $request->postalCode();
-
-        $menus = $cafe->menus; // retrive the record related to cafe
-        $menuIds = $menus->pluck('id')->toArray(); // Change menu id to array
-        $menuNames = $request->menu();
-        $menuPrices = $request->price();
+        $cafe->user_id = $request->userId();
 
         if($request->filled('description')){
             $cafe->description = $request->description();
@@ -49,19 +46,24 @@ class PutController extends Controller
             $path = $image->store('public/' . 'cafe');
             $cafe->image = $path;
         }
+        //delete menus
+        $cafeService->deleteMenu($cafe, $request->menuIds());
+        //update or save menus
+        foreach($request->menu() as $index => $menuName){
+            $menuPrice = $request->price()[$index];
 
-        // 新しいメニューを追加する処理
-        foreach ($menuNames as $index => $menuName) {
-            if(!empty($menuName)){
-                // 新しいメニューを追加
-                $menu = new Menu();
-                $menu->name = $menuName;
-                $menu->price = $menuPrices[$index];
-                $menu->cafe_id = $cafe->id;
-                $menu->save();
+            if (array_key_exists($index, $request->menuIds())) {
+                $menuId = $request->menuIds()[$index];
+            } else {
+                $menuId = false;
             }
-        }
 
+                if($menuName && $menuPrice && $menuId){
+                    $cafeService->updateMenu($menuId, $menuName, $menuPrice);
+                } else {
+                    $cafeService->saveMenu($menuName, $menuPrice, $cafe->id);
+                }
+        }
 
         $cafe->save();
         return redirect()->route('cafe.update.show', ['cafeId' => $cafe->id])->with('feedback.success', "Cafe information was successfully modified!");

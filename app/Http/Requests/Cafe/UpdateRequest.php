@@ -38,6 +38,9 @@ class UpdateRequest extends FormRequest
     public function id(): int {
         return (int) $this->route('cafeId');
     }
+    public function userId(): int {
+        return $this->user()->id;
+    }
 
     public function cafeName(): string {
         return $this->input('cafeName');
@@ -71,11 +74,15 @@ class UpdateRequest extends FormRequest
         return $this->input('description');
     }
 
-    public function menu(): iterable {
-        return $this->input('menu_name', []) ?? [];
+    public function menu(): array {
+        return $this->input('menu_name', []);
     }
 
-    public function price(): iterable {
-        return $this->input('menu_price', []) ?? [];
+    public function price(): array {
+        return $this->input('menu_price', []);
+    }
+
+    public function menuIds(): array {
+        return $this->input('menu_ids', []);
     }
 }
