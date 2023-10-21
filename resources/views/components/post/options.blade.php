@@ -9,12 +9,12 @@
     </button>
     <!-- Dropdown menu -->
     <div x-show="isOpen" @click.away="isOpen = false" class="relative md:absolute w-16 md:w-24 z-10 mt-2 rounded-lg divide-y divide-gray-100 shadow-lg">
-        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
+        <ul class="py-2 text-sm text-gray-700 bg-white rounded-lg" aria-labelledby="dropdownMenuIconHorizontalButton">
             <li>
                 <x-element.edit :post="$post" />
             </li>
             <li>
-                <div>
+                <div class="relative">
                     <form action="{{ route('post.delete', ['postId' => $postId]) }}" method="post" onclick="return confirm('Are you sure to delete?');">
                         @method('DELETE')
                         @csrf

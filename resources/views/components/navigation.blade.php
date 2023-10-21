@@ -40,8 +40,18 @@
       </li>
       <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">Contact</a></li>
     </ul>
-    <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="#">Sign In</a>
-    <a class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="#">Sign up</a>
+    @if (Route::has('login'))
+      @auth
+      <a href="{{ url('/dashboard') }}" >
+        <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+      </a>
+      @else
+        <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="{{ route('login') }}">Sign In</a>
+          @if (Route::has('register'))
+            <a class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="{{ route('register') }}">Sign up</a>
+          @endif
+      @endauth
+    @endif
   </nav>
   <div x-show="isOpen" class="relative z-50">
     <div class="fixed inset-0 bg-gray-800 opacity-25" @click.away="isOpen = false"></div>

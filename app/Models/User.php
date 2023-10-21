@@ -44,8 +44,11 @@ class User extends Authenticatable
     ];
 
     public function posts() {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->latest();
     }
+    public function getPaginate($paginate = 15){
+        return $this->posts()->paginate($paginate);
+    } 
 
     public function likes() {
         return $this->belongsToMany(Post::class, 'post_likes');
