@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cafes', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users'); 
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('profile_image')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cafes', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('profile_image');
         });
     }
 };

@@ -43,7 +43,7 @@
     @if (Route::has('login'))
       @auth
       <a href="{{ url('/dashboard') }}" >
-        <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+        <img class="inline-block lg:h-16 lg:w-16 w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? asset('storage/' . Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
       </a>
       @else
         <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="{{ route('login') }}">Sign In</a>
