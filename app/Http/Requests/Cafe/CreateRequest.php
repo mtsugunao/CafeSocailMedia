@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
             'province' => 'required',
             'city' => 'required',
             'streetAddress' => 'required',
-            'postalCode' => 'required|max:6',
+            'postalCode' => 'required|max:7',
             'description' => 'nullable|string',
             'parking' => 'nullable|string'
         ];
@@ -55,6 +55,9 @@ class CreateRequest extends FormRequest
 
     public function postalCode(): string {
         return $this->input('postalCode');
+    }
+    public function userId(): int {
+        return $this->user()->id;
     }
 
     public function parking(): string {

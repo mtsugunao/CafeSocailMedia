@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'province' => 'required',
             'city' => 'required',
             'streetAddress' => 'required',
-            'postalCode' => 'required|max:6',
+            'postalCode' => 'required|max:7',
             'description' => 'nullable|string',
             'parking' => 'nullable|string',
             'menu_name.*' => 'required',

@@ -22,6 +22,7 @@ class CreateController extends Controller
         $cafe->city = $request->city();
         $cafe->street_address = $request->streetAddress();
         $cafe->postalcode = $request->postalCode();
+        $cafe->user_id = $request->userId();
 
         $menuNames = $request->menu();
         $menuPrices = $request->price();
@@ -54,6 +55,6 @@ class CreateController extends Controller
             }
         }
 
-        return redirect()->route('cafe.new')->with('feedback.success', "Cafe infomation submitted successfully!");
+        return redirect()->route('cafe.detail.show', ['cafeId' => $cafe->id])->with('feedback.success', "The new cafe has been created on the database! Enjoy sharing your experiences!");
     }
 }

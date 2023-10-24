@@ -17,7 +17,7 @@ class PostService {
     }
 
     public function getPostsById(int $cafeId) {
-        return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->paginate(15);
+        return Post::where('cafe_id', $cafeId)->with('images')->orderBy('created_at', 'DESC')->paginate(3);
     }
 
     public function getPostsByUserId(int $userId) {

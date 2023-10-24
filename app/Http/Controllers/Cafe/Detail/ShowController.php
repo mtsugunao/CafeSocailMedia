@@ -18,6 +18,7 @@ class ShowController extends Controller
         $cafeId = (int) $request->route('cafeId');
         $cafe = Cafe::where('id', $cafeId)->firstOrFail();
         $posts = $postService->getPostsById($cafeId);
-        return view('cafe.specific')->with('cafe', $cafe)->with('posts', $posts);
+        $address = $cafe->street_address . ' ' . $cafe->city . ' ' . $cafe->province . ' ' . $cafe->country;
+        return view('cafe.specific')->with('cafe', $cafe)->with('posts', $posts)->with('address', $address);
     }
 }
