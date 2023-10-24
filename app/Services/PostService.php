@@ -21,7 +21,7 @@ class PostService {
     }
 
     public function getPostsByUserId(int $userId) {
-        return Post::where('user_id', $userId)->with('images')->orderBy('created_at', 'DESC')->get();
+        return Post::where('user_id', $userId)->with('images')->orderBy('created_at', 'DESC')->paginate(15);
     }
 
     public function checkOwnPost(int $userId, int $postId): bool {
