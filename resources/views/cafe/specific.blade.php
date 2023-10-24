@@ -25,7 +25,7 @@
             background: transparent;
         }
     </style>
-    @stack('js')
+    @stack('css')
 </head>
 
 <body>
@@ -76,63 +76,16 @@
                 </div>
             </div>
             {{ $posts->links('vendor.pagination.tailwindPagination') }}
+            <div class="relative w-full lg:w-4/5 flex flex-col justify-center mx-auto mt-10">
+                <p class="text-sm lg:text-lg font-semibold text-start mb-2">Make sure the map is pinned to an accurate position. If not, please modify the address.</p>
+                <div id="map" address-data="{{ $address }}" class="w-full h-full pb-[50%] relative">
+                </div>
+            </div>
         </div>
     </section>
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(function() {
-            $(".more-link").each(function(v_n) {
-                $(this).after('<div class="more-link-after"></div>');
-                f_lessText(v_n);
-            });
-        });
-
-        function f_moreText(v_n) {
-            var e_text = $(".more-link").eq(v_n);
-            var v_closeHeight = e_text.height();
-            var v_poenHeight = e_text.css("height", "auto").height();
-            e_text.height(v_closeHeight).animate({
-                height: v_poenHeight
-            }, 150);
-            $(".more-link-after:eq(" + v_n + ")").html(
-                '<a href="javascript:void(0)" onclick="f_lessText(' + v_n + ')">Close</a>'
-            );
-        }
-
-        function f_lessText(v_n) {
-            var e_more = $(".more-link:eq(" + v_n + ")");
-            var e_moreAfter = $(".more-link-after:eq(" + v_n + ")");
-
-            var v_max = 3;
-            if (e_more.data("max")) {
-                v_max = e_more.data("max");
-            }
-            var e_text = e_more;
-            var v_textHeight = parseFloat(e_more.css("height"));
-            var v_fontHeight = parseFloat(e_more.css("line-height"));
-            if (!v_fontHeight) {
-                v_fontHeight = parseFloat(e_more.css("font-size")) * 1.5;
-            }
-            var v_moreMaxHeight = v_fontHeight * v_max;
-            if (v_moreMaxHeight < v_textHeight) {
-                e_more.css({
-                    overflow: "hidden",
-                    "margin-bottom": "0"
-                });
-                e_more.height(v_moreMaxHeight);
-                e_moreAfter.css({
-                    "font-size": e_text.css("font-size"),
-                    "line-height": e_text.css("line-height")
-                });
-                e_moreAfter.html(
-                    '<div><a href="javascript:void(0)" onclick="f_moreText(' +
-                    v_n +
-                    ')">･･･Read more</a></div>'
-                );
-            }
-        }
-
         const countDown = document.querySelector('#count-down');
         const length = document.querySelector('.length');
         const maxLength = 140;
@@ -144,7 +97,47 @@
                 length.style.color = '#444';
             }
         }, false);
+
+        function initMap() {
+ 
+        var target = document.getElementById('map'); //マップを表示する要素を指定
+        var address =  document.getElementById('map').getAttribute('address-data'); //住所を指定
+        var geocoder = new google.maps.Geocoder();  
+
+        geocoder.geocode({ address: address }, function(results, status){
+        if (status === 'OK' && results[0]){
+
+
+                var map = new google.maps.Map(target, {  
+                    center: results[0].geometry.location,
+                    zoom: 18
+                });
+
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: `<div>
+                                <div class="sm:m-2">
+                                <p class="py-1 font-semibold text-l">{{ $cafe->name }}</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $address }}" target="_blanck"><span class="hover:underline decoration-sky-500">More details</span></a>
+                                </div>
+                            </div>`
+                    });
+                infowindow.open(map, marker);
+
+        }else{ 
+            //住所が存在しない場合の処理
+            alert('Geocode was not successful for the following reason: ' + status);
+            target.style.display = 'none'; // マップを非表示にする例
+        }
+        });
+        }
     </script>
+    <script src='//maps.google.com/maps/api/js?key={{ config("services.google-map.apikey") }}=initMap' async defer></script>
 </body>
 
 </html>
