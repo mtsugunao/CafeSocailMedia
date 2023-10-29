@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/post/reply/{postId}/{commentId}', \App\Http\Controllers\Post\Update\ReplyController::class)->name('post.reply.put')->where('commentId', '[0-9]+')->where('postId', '[0-9]+');
     Route::delete('/post/reply/{commentId}', \App\Http\Controllers\Post\DeleteReplyController::class)->name('post.reply.delete')->where('commentId', '[0-9]+');
 
+    Route::get('/form', [\App\Http\Controllers\FormControroller::class, 'index'])->name('form');
+    Route::post('/form',  [\App\Http\Controllers\FormControroller::class, 'sendMail']);
 });
 
 require __DIR__.'/auth.php';
