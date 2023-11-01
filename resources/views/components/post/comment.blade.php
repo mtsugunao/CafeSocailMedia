@@ -1,10 +1,10 @@
 <div class="bg-white py-8 lg:py-16 antialiased">
     @if(session('feedback.success'))
-    <div class="flex mx-auto justify-center bg-gray-200 sm:w-2/5 w-1/2 p-3">
+    <div class="flex mx-auto justify-center sm:w-2/5 w-1/2 p-3">
         <p style="color: green" class="flex justify-center">{{ session('feedback.success') }}</p>
     </div>
     @endif
-    <div class="max-w-2xl mx-auto px-4" wire:click="closeModal">
+    <div class="max-w-2xl mx-auto px-4">
         <div class="flex justify-between items-center mb-6">
             <x-post.commentcontent :post="$post"></x-post.commentcontent>
         </div>
@@ -31,6 +31,7 @@
         <x-post.reply :post="$post" :comment="$comment"></x-post.reply>
         @endforeach
     </div>
+    <x-footer/>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

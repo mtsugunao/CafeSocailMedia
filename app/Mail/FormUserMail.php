@@ -27,8 +27,8 @@ class FormUserMail extends Mailable implements ShouldQueue
      */
     public function envelope(): Envelope
     {
-        $from = new Address('admin@example.com', 'Cafe-In');
-        $subject = '[Cafe-In] Thank you for reaching us.';
+        $from = new Address('admin@example.com', 'MugNet');
+        $subject = '[MugNet] Thank you for reaching us.';
         return new Envelope(
             from: $from,
             subject: $subject,

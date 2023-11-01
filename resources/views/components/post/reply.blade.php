@@ -3,7 +3,7 @@
     <article class="p-3 text-base bg-white rounded-lg">
         <footer class="flex justify-between items-center mb-2">
             <div class="flex items-center">
-                <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">{{ $comment->user->name }}</p>
+                <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="Michael Gough">{{ $comment->user->name }}</p>
                 <p class="text-sm text-gray-600"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{ Carbon\Carbon::parse($comment->created_at)->format('Y/m/d H:i') }}</time></p>
             </div>
             <div class="flex w-1/6 justify-start items-center">
