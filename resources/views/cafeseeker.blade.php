@@ -56,6 +56,7 @@
       </div>
         {{ $posts->links('vendor.pagination.tailwindPagination') }}
     </div>
+    <x-footer/>
   </section>
   @livewireScripts
 </body>

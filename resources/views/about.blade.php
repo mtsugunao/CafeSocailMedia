@@ -16,8 +16,8 @@
                 <h2 class="font-semibold">About Us</h2>
             </div>
         </div>
-        <p class="mb-5">Welcome to Cafe-In - Your Social Cafe Hub!</p>
-        <p>At Cafe-In, we're more than just a website; we're a vibrant online community where coffee lovers and cafe enthusiasts unite. Our mission is to create a space where you can share your coffee experiences, connect with friends, and help build a comprehensive database of cafes from around the world.</p>
+        <p class="mb-5">Welcome to MugNet - Your Social Cafe Hub!</p>
+        <p>At MugNet, we're more than just a website; we're a vibrant online community where coffee lovers and cafe enthusiasts unite. Our mission is to create a space where you can share your coffee experiences, connect with friends, and help build a comprehensive database of cafes from around the world.</p>
     </div>
     <div class="flex flex-col w-full mx-auto mb-5 prose text-left prose-md">
         <div class="mb-5 border-b border-gray-200">
@@ -25,7 +25,7 @@
                 <h2 class="font-semibold">Our Social Coffee Experience</h2>
             </div>
         </div>
-        <p>Are you passionate about coffee? So are we! Cafe-In offers a unique social media function that allows you to post about your coffee adventures, discover what your friends are sipping on, and even find new cafe gems to explore. Whether it's a beautifully crafted latte, a cozy corner cafe, or a hidden gem you've stumbled upon, share it with our coffee-loving community. Connect with friends, like-minded individuals, and fellow coffee enthusiasts to fuel your caffeine conversations.</p>
+        <p>Are you passionate about coffee? So are we! MugNet offers a unique social media function that allows you to post about your coffee adventures, discover what your friends are sipping on, and even find new cafe gems to explore. Whether it's a beautifully crafted latte, a cozy corner cafe, or a hidden gem you've stumbled upon, share it with our coffee-loving community. Connect with friends, like-minded individuals, and fellow coffee enthusiasts to fuel your caffeine conversations.</p>
     </div>
     <div class="flex flex-col w-full mx-auto mb-5 prose text-left prose-md">
         <div class="mb-5 border-b border-gray-200">
@@ -41,10 +41,11 @@
                 <h2 class="font-semibold">Join the Cafe-In Community</h2>
             </div>
         </div>
-        <p class="mb-5">Ready to embark on a journey of coffee exploration and connection? Sign up for Cafe-In today and become a part of our passionate coffee community. Whether you're sharing your latest coffee masterpiece, connecting with friends, or contributing to our cafe database, we're here to make your coffee adventures even more enjoyable.</p>
-        <p>Thank you for choosing Cafe-In as your go-to destination for all things coffee. Together, let's brew up a world of coffee experiences!</p>
+        <p class="mb-5">Ready to embark on a journey of coffee exploration and connection? Sign up for MugNet today and become a part of our passionate coffee community. Whether you're sharing your latest coffee masterpiece, connecting with friends, or contributing to our cafe database, we're here to make your coffee adventures even more enjoyable.</p>
+        <p>Thank you for choosing MugNet as your go-to destination for all things coffee. Together, let's brew up a world of coffee experiences!</p>
     </div>
 </div>
+<x-footer/>
 </section>
 </body>
 </html>

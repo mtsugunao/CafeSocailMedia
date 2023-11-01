@@ -24,12 +24,16 @@
       content: " ";
       background: transparent;
     }
+
+    .options {
+      background-color: #e5e7eb;
+    }
   </style>
    @stack('css')
 </head>
 <body>
   <section class="w-full bg-white dark:bg-wickeddark">
-    <x-navigation />
+    <x-navigation/>
     <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div class="flex w-full mx-auto">
         <div class="relative md:w-4/5 w-full inline-flex items-center mx-auto justify-center align-middle">
@@ -48,6 +52,7 @@
       </div>
         {{ $posts->links('vendor.pagination.tailwindPagination') }}
     </div>
+    <x-footer/>
   </section>
   @livewireScripts
 </body>

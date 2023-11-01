@@ -54,6 +54,7 @@
             </div>
             {{ $searchResults->appends($_GET)->links('vendor.pagination.tailwindPagination') }}
         </div>
+        <x-footer/>
     </section>
     @livewireScripts
 </body>

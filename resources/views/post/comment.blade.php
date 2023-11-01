@@ -7,6 +7,14 @@
     <title>Comment</title>
     @vite(['resources/css/app.css'])
     @livewireStyles
+    <style>
+        .options {
+      background-color: #ffffff;
+        }
+        .options:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
 </head>
 
 <body>

@@ -16,8 +16,6 @@
       <p class="mb-4 lg:mb-8 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a Cafe-In feature? Let us know.</p>
       @if(session('feedback.success'))
       <p style="color: green">{{ session('feedback.success') }}</p>
-      @else
-      <p style="color: red">Something went wrong</p>
       @endif
       <form action="{{ route('form') }}" class="space-y-8" method="POST">
         @csrf
@@ -30,7 +28,7 @@
         </div>
         <div>
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-          <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="{{ old('email') }}" placeholder="example@gmail.com" required>
+          <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" value="{{ old('email') }}" placeholder="example@mugnet.com" required>
           @if($errors->has('email'))
           <p style="color: red">{{ $errors->first('email') }}</p>
           @endif
@@ -45,6 +43,7 @@
         <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-lime-700 sm:w-fit hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800">Send message</button>
       </form>
     </div>
+    <x-footer/>
   </section>
   @livewireScripts
 </body>

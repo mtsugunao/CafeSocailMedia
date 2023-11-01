@@ -1,9 +1,9 @@
-<div class="rounded-md mt-5 w-full mx-auto">
+<div class="rounded-md mt-5 w-full mx-auto bg-white shadow-md">
     <div class="flex justify-between flex-shrink-0 p-4 pb-0">
         <a href="#" class="flex-shrink-0 group block">
             <div class="flex items-center mb-3">
                 <div>
-                    <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+                    <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $post->user->name }}" />
                 </div>
                 <div class="ml-3">
                     <p class="text-base leading-6 font-medium text-black hover:text-gray-300">

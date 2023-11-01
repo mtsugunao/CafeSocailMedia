@@ -29,7 +29,7 @@
                     <p style="color: green;">{{ session('feedback.success') }}</p>
                     @endif
                     <p class="max-w-xl text-lg">
-                        Assist me in constructing a cafe database. If you're uncertain about the input fields, leave them blank. After registration, any Cafe-In member can edit the information.
+                        Assist me in constructing a cafe database. If you're uncertain about the input fields, leave them blank. After registration, any MugNet member can edit the information.
                     </p>
 
                     <div class="mt-8">
@@ -140,6 +140,7 @@
                 </div>
             </div>
         </div>
+        <x-footer/>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

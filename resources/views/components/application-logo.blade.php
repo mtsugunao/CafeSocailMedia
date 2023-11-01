@@ -1,1 +1,1 @@
-<img src="{{ asset('images/cafe-in-logo.svg') }}" alt="Cafe-In logo" class="cafe-in-logo">
+<img src="{{ asset('images/mugnet-logo.svg') }}" alt="MugNet logo" class="MugNet-logo">

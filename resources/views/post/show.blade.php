@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Post Form</title>
+  <title>MugNet</title>
   @vite(['resources/css/app.css'])
   @livewireStyles
   <style>
@@ -23,6 +23,10 @@
       display: block;
       content: " ";
       background: transparent;
+    }
+
+    .options {
+      background-color: #e5e7eb;
     }
   </style>
   @stack('css')
@@ -73,6 +77,7 @@
         <a href="{{ route('post.posts') }}" class="px-6 py-3 text-gray-100 no-underline bg-lime-500 rounded hover:bg-lime-600 hover:underline hover:text-gray-200">More Posts</a>
       </div>
     </div>
+    <x-footer/>
   </section>
   @livewireScripts
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

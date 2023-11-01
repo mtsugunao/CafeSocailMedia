@@ -21,6 +21,6 @@ Thank you for considering us, and we look forward to assisting you.
 
 Best regards,
 
-The Cafe-In Team
+The MugNet Team
 
 @endcomponent
