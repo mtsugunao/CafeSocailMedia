@@ -48,7 +48,7 @@
                 </div>
 
             @if(session('feedback.success'))
-            <p style="color: green">{{ session('feedback.success') }}</p>
+            <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
             @endif
             <x-post.list :posts="$posts"></x-post.list>
             </div>

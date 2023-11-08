@@ -24,16 +24,14 @@
                 <form action="{{ route('post.reply.put', ['postId' => $post->id, 'commentId' => $comment->id]) }}" method="post">
                 @method('PUT')
                     @csrf
-                    @if (session()->has('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
+                    @if (session('success'))
+                    <x-alert.success>{{ session('success') }}</x-alert.success>
                     @endif
                     <div class="p-3">
                         <div class="flex justify-end p-3 items-center">
                         <?php
                             $str = Str::length($comment->comment);
-                            $len = 140 - (int)$str;
+                            $len = 255 - (int)$str;
                         ?>
                             <p class="flex"><span class="charCount">{{ $len }}</span>&nbsp;words left</p>
                         </div>
@@ -41,7 +39,7 @@
                             <textarea name="reply" rows="6" class="myTextarea px-2 w-full text-sm text-gray-900 border-1 rounded-lg border-gray-50 focus:ring-lime-500 focus:border-lime-500 focus:ring-0 focus:outline-none" placeholder="To {{ $comment->user->name }}">{{ $comment->comment }}</textarea>
                         </div>
                         <div class="flex justify-center items-center space-x-2">
-                            <button type="submit" class="mx-auto text-xl md:h-12 h-14 font-medium text-center text-white bg-lime-500 hover:bg-lime-700 rounded-lg focus:ring-4 focus:ring-primary-200 sm:w-3/5 w-full">
+                            <button type="submit" class="mx-auto text-xl md:h-12 h-14 font-medium text-center text-white bg-lime-500 hover:bg-lime-700 rounded-lg focus:ring-4 focus:ring-lime-200 sm:w-3/5 w-full">
                                 Edit
                             </button>
                         </div>

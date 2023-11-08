@@ -35,9 +35,8 @@ class CreateController extends Controller
             $cafe->parking = $request->parking();
         }
 
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $path = $image->store('public/' . 'cafe');
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('cafe', 'public');
             $cafe->image = $path;
         }
 

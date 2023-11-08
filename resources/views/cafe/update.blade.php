@@ -14,19 +14,13 @@
 </head>
 
 <body>
-    <!--
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
--->
     <section class="bg-gray-100">
         <x-navigation />
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
                 <div class="lg:col-span-2 lg:py-12">
                     @if (session('feedback.success'))
-                    <p style="color: green;" class="text-lg py-3">{{ session('feedback.success') }}</p>
+                    <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
                     @endif
                     <p class="max-w-xl text-lg">
                         Assist me in constructing a cafe database. If you're uncertain about the input fields, leave them blank. After registration, any MugNet member can edit the information.
@@ -45,32 +39,32 @@
                         @csrf
                         <div>
                             <label class="sr-only" for="cafeName">Cafe Name</label>
-                            <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" value="{{ $cafe->name }}" />
+                            <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" value="{{ $cafe->name }}" />
                             @error('cafeName')
-                            <p style="color: red;">{{ $message }}</p>
+                            <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
                         </div>
 
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <div>
                                 <label for="country" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
                                     <option hidden value="{{ $cafe->country }}">{{ $cafe->country }}</option>
                                     <option value="Canada" class="hover-option">Canada</option>
                                     <option value="United States">United States</option>
                                 </select>
                                 @error('country')
-                                <p style="color: red;">{{ $message }}</p>
+                                <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
 
                             <div>
                                 <label for="province" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                                <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
                                     <option hidden value="{{ $cafe->province }}">{{ $cafe->province }}</option>
                                 </select>
                                 @error('province')
-                                <p style="color: red;">{{ $message }}</p>
+                                <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                         </div>
@@ -78,41 +72,41 @@
                         <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
                             <div>
                                 <label class="sr-only" for="city">City</label>
-                                <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" value="{{ $cafe->city }}" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" value="{{ $cafe->city }}" />
                                 @error('city')
-                                <p style="color: red;">{{ $message }}</p>
+                                <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
 
                             <div>
                                 <label class="sr-only" for="streetAddress">Street Address</label>
-                                <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" value="{{ $cafe->street_address }}" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" value="{{ $cafe->street_address }}" />
                                 @error('streetAddress')
-                                <p style="color: red;">{{ $message }}</p>
+                                <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                             <div>
                                 <label class="sr-only" for="postalCode">Postal Code</label>
-                                <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" value="{{ $cafe->postalcode }}" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" value="{{ $cafe->postalcode }}" />
                                 @error('postalCode')
-                                <p style="color: red;">{{ $message }}</p>
+                                <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                         </div>
 
                         <div>
                             <label class="sr-only" for="parking">Parking Access</label>
-                            <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Parking Access" type="text" id="parking" name="parking" value="{{ $cafe->parking }}" />
+                            <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Parking Access" type="text" id="parking" name="parking" value="{{ $cafe->parking }}" />
                             @error('parking')
-                            <p style="color: red;">{{ $message }}</p>
+                            <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
                         </div>
 
                         <div>
                             <label class="sr-only" for="description">Description</label>
-                            <textarea class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Description" rows="8" id="description" name="description" value="{{ $cafe->description }}"></textarea>
+                            <textarea class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Description" rows="8" id="description" name="description" value="{{ $cafe->description }}"></textarea>
                             @error('description')
-                            <p style="color: red;">{{ $message }}</p>
+                            <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
                         </div>
 
@@ -126,10 +120,10 @@
                             @foreach($cafe->menus as $menu)
                                 <div class="menu-field items-center grid grid-cols-1 gap-4 text-center sm:grid-cols-3 py-3">
                                     <div>
-                                        <input class="rounded-lg w-full" name="menu_name[]" placeholder="Menu name" value="{{ $menu->name }}">
+                                        <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" name="menu_name[]" placeholder="Menu name" value="{{ $menu->name }}">
                                     </div>
                                     <div>
-                                        <input class="rounded-lg w-full" type="text" name="menu_price[]" placeholder="Price" value="{{ $menu->price }}">
+                                        <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" type="text" name="menu_price[]" placeholder="Price" value="{{ $menu->price }}">
                                     </div>
                                     <div>
                                         <button type="button" class="w-full remove-menu bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>
@@ -142,10 +136,10 @@
                             @endif
                         </div>
                         @error('menu_name.*')
-                        <div class="invalid-feedback" style="color: red;">{{ $message }}</div>
+                        <x-alert.error>{{ $message}}</x-alert.error>
                         @enderror
                         @error('menu_price.*')
-                        <div class="invalid-feedback" style="color: red;">{{ $message }}</div>
+                        <x-alert.error>{{ $message}}</x-alert.error>
                         @enderror
                         <button type="button" id="add-menu" class="px-5 py-4 w-full text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-lime-600 lg:px-10 rounded-xl hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">Add Menu and Price</button>
 
@@ -205,10 +199,10 @@
                 newMenuField.className = 'menu-field items-center grid grid-cols-1 gap-4 text-center sm:grid-cols-3 py-3';
                 newMenuField.innerHTML = `
                 <div>
-                    <input class="rounded-lg w-full" name="menu_name[]" placeholder="Menu name">
+                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" name="menu_name[]" placeholder="Menu name">
                 </div>
                 <div>
-                    <input class="rounded-lg w-full" type="text" name="menu_price[]" placeholder="Price">
+                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" type="text" name="menu_price[]" placeholder="Price">
                 </div>
                 <div>
                     <button type="button" class="w-full remove-menu bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>

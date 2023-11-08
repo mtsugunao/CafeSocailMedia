@@ -14,9 +14,9 @@
     </div>
 
     <!-- Modal -->
-    <div class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50" x-show="showModal">
+    <div class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50" x-show="showModal" x-on:click.away="showModal = false">
         <!-- Modal inner -->
-        <div class="max-w-5xl py-3 mx-auto text-left bg-white rounded shadow-lg relative w-full sm:h-auto h-full sm:w-2/3" @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+        <div class="max-w-5xl py-3 mx-auto text-left bg-white rounded shadow-lg relative w-full h-full md:w-2/3 md:h-2/3" @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
             <!-- Title / Close-->
             <header class="flex items-center justify-center relative">
                 <h1 class="text-center m-10 md:mb-4 md:text-2xl text-4xl font-semibold text-black max-w-none">Edit Post</h1>
@@ -30,7 +30,7 @@
 
             <!-- content -->
             <div class="relative">
-                <form action="{{ route('post.update.put', ['postId' => $post->id]) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('post.update.put', ['postId' => $post->id]) }}" id="edit" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="p-3">
@@ -38,27 +38,31 @@
                             <p class="flex text-2xl md:text-lg font-semibold px-4 md:px-2">{{ $post->cafe->name }}</p>
                             <?php
                             $str = Str::length($post->content);
-                            $len = 140 - (int)$str;
+                            $len = 255 - (int)$str;
                             ?>
                             <p class="flex"><span class="length">{{ $len }}</span>&nbsp;words left</p>
                         </div>
                         <div class="pb-10 px-3">
                             <textarea name="post" row="4" type="text" class="focus:ring-lime-400 focus:border-lime-400 border-1 mt-1 block w-full md:text-sm text-base border
                             border-gray-400 rounded-md pb-4" id="count-down">{{ $post->content }}</textarea>
-
-                            <x-post.images :images="$post->images"></x-post.image>
-                                @error('post')
-                                <p style="color: red">{{ $message }}</p>
-                                @enderror
+                            @error('post')
+                            <x-alert.error>{{ $message}}</x-alert.error>
+                            @enderror
                         </div>
-                        <div class="w-full flex items-center">
-                            <button type="submit" class="justify-center mx-auto sm:w-1/2 w-full h-13 border border-green-500 bg-green-500 text-center text-xl font-medium text-white shadow-sm transition-all
-                    hover:border-green-700 hover:bg-green-700 focus:ring rounded-lg focus:ring-green-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">
+                        <div class="md:hidden w-full flex items-center">
+                            <button type="submit" class="justify-center mx-auto w-1/2 h-16 border border-lime-500 bg-lime-500 text-center text-xl font-medium text-white shadow-sm transition-all
+                    hover:border-lime-700 hover:bg-lime-700 focus:ring rounded-lg focus:ring-lime-200 disabled:cursor-not-allowed disabled:border-lime-300 disabled:bg-lime-300">
                                 Edit
                             </button>
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="hidden w-full md:flex absolute bottom-4">
+                <button type="submit" form="edit" class="justify-center mx-auto w-1/2 h-14 border border-lime-500 bg-lime-500 text-center text-xl font-medium text-white shadow-sm transition-all
+                    hover:border-lime-700 hover:bg-lime-700 focus:ring rounded-lg focus:ring-lime-200 disabled:cursor-not-allowed disabled:border-lime-300 disabled:bg-lime-300">
+                    Edit
+                </button>
             </div>
         </div>
     </div>

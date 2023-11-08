@@ -23,14 +23,12 @@
             <div class="relative">
                 <form action="{{ route('post.reply.create', ['postId' => $post->id, 'commentId' => $comment->id]) }}" method="post">
                     @csrf
-                    @if (session()->has('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
+                    @if (session('success'))
+                    <x-alert.success>{{ session('success') }}</x-alert.success>
                     @endif
                     <div class="p-3">
                         <div class="flex justify-end p-3 items-center">
-                            <p class="flex"><span class="charCount">140</span>&nbsp;words left</p>
+                            <p class="flex"><span class="charCount">255</span>&nbsp;words left</p>
                         </div>
                         <div class="pb-10 px-3">
                             <textarea name="reply" rows="6" class="myTextarea px-2 w-full text-sm text-gray-900 border-1 rounded-lg border-gray-50 focus:ring-lime-500 focus:border-lime-500 focus:ring-0 focus:outline-none" placeholder="To {{ $comment->user->name }}"></textarea>

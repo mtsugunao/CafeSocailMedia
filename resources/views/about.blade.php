@@ -38,7 +38,7 @@
     <div class="flex flex-col w-full mx-auto mb-5 prose text-left prose-md">
         <div class="mb-5 border-b border-gray-200">
             <div class="flex flex-wrap items-baseline -mt-2">
-                <h2 class="font-semibold">Join the Cafe-In Community</h2>
+                <h2 class="font-semibold">Join the MugNet Community</h2>
             </div>
         </div>
         <p class="mb-5">Ready to embark on a journey of coffee exploration and connection? Sign up for MugNet today and become a part of our passionate coffee community. Whether you're sharing your latest coffee masterpiece, connecting with friends, or contributing to our cafe database, we're here to make your coffee adventures even more enjoyable.</p>

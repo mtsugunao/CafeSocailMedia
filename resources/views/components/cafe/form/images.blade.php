@@ -6,7 +6,7 @@
                 <span x-text="field.file ? field.file.name : 'Select photos'" class="text-gray-700"></span>
             </label>
             @error('image')
-            <p style="color: red;">{{ $message }}</p>
+            <x-alert.error>{{ $message}}</x-alert.error>
             @enderror
             <button type="reset" @click="removeField(i)" class="p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-red-500 hover:text-red-700">

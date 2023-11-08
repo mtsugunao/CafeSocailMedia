@@ -22,7 +22,7 @@ class ReplyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'reply' => 'required'
+            'reply' => 'required|max:255'
         ];
     }
     public function getReply(): string {

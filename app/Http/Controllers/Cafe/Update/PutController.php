@@ -37,13 +37,12 @@ class PutController extends Controller
         if ($request->hasFile('image')) {
             // Delete the existing image file
             if ($cafe->image !== null) {
-                $path = str_replace('public/', '', $cafe->image);
-                Storage::disk('public')->delete($path);
+                Storage::disk('public')->delete($cafe->image);
             }
     
             // Upload the new image file
             $image = $request->file('image');
-            $path = $image->store('public/' . 'cafe');
+            $path = $image->store('cafe', 'public');
             $cafe->image = $path;
         }
         //delete menus

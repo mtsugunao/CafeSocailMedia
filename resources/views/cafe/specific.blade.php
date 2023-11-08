@@ -50,7 +50,7 @@
                                     <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}" class="text-sm text-gray-500 hover:underline">Update</a>
                                 </div>
                             </div>
-                            <x-post.cafe :cafe="$cafe"></x-element.edit>
+                            <x-post.cafe :cafe="$cafe"></x-post.cafe>
                         </div>
                     </div>
 
@@ -67,9 +67,15 @@
                             </div>
                         </div>
                         @endif
+                        @error('images.*')
+                        <x-alert.error>{{ $message}}</x-alert.error>
+                        @enderror
+                        @error('post')
+                        <x-alert.error>{{ $message}}</x-alert.error>
+                        @enderror
 
                         @if(session('feedback.success'))
-                        <p style="color: green" class="text-lg p-2 justify-start">{{ session('feedback.success') }}</p>
+                        <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
                         @endif
                         <x-post.list :posts="$posts"></x-post.list>
                     </div>
@@ -89,7 +95,7 @@
     <script>
         const countDown = document.querySelector('#count-down');
         const length = document.querySelector('.length');
-        const maxLength = 140;
+        const maxLength = 255;
         countDown.addEventListener('input', () => {
             length.textContent = maxLength - countDown.value.length;
             if (maxLength - countDown.value.length < 0) {
@@ -100,9 +106,8 @@
         }, false);
 
         function initMap() {
- 
-        var target = document.getElementById('map'); //マップを表示する要素を指定
-        var address =  document.getElementById('map').getAttribute('address-data'); //住所を指定
+        var target = document.getElementById('map');
+        var address =  document.getElementById('map').getAttribute('address-data');
         var geocoder = new google.maps.Geocoder();  
 
         geocoder.geocode({ address: address }, function(results, status){

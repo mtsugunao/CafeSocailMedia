@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +30,6 @@
   </style>
   @stack('css')
 </head>
-
 <body>
   <section class="w-full bg-white dark:bg-wickeddark">
     <x-navigation />
@@ -59,7 +57,7 @@
             </div>
 
             @if(session('feedback.success'))
-            <p style="color: green" class="mx-auto flex items-center justify-center text-lg font-semibold">{{ session('feedback.success') }}</p>
+            <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
             @endif
             <div class="pr-5 flex justify-between">
               <div class="md:flex hidden bg-white lg:m-10 m-5 w-1/3">
@@ -77,14 +75,13 @@
         <a href="{{ route('post.posts') }}" class="px-6 py-3 text-gray-100 no-underline bg-lime-500 rounded hover:bg-lime-600 hover:underline hover:text-gray-200">More Posts</a>
       </div>
     </div>
-    <x-footer/>
+    <x-footer />
   </section>
   @livewireScripts
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     const countDown = document.querySelector('#count-down');
     const length = document.querySelector('.length');
-    const maxLength = 140;
+    const maxLength = 255;
     countDown.addEventListener('input', () => {
       length.textContent = maxLength - countDown.value.length;
       if (maxLength - countDown.value.length < 0) {
