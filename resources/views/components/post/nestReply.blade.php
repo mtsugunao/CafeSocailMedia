@@ -3,7 +3,7 @@
 <article class="py-6 px-3 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg">
     <footer class="flex justify-between items-center mb-2">
         <div class="flex items-center">
-            <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Jese Leos">{{ $reply->user->name }}</p>
+            <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $reply->user->name }}">{{ $reply->user->name }}</p>
             <p class="text-sm text-gray-600"><time pubdate datetime="2022-02-12" title="February 12th, 2022">{{ Carbon\Carbon::parse($reply->created_at)->format('Y/m/d H:i') }}</time></p>
         </div>
         <div class="flex w-1/6 justify-start items-center mr-2">
@@ -26,7 +26,7 @@
                         </li>
                         @endif
                         <li class="mt-1 mb-1">
-                            <a href="#" class="flex w-full pt-1 pb-1 px-2 items-center text-sm text-gray-500 hover:bg-gray-100 font-medium">Report</a>
+                            <a href="{{ route('form') }}" class="flex w-full pt-1 pb-1 px-2 items-center text-sm text-gray-500 hover:bg-gray-100 font-medium">Report</a>
                         </li>
                     </ul>
                 </div>

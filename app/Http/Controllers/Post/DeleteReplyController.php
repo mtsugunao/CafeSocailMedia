@@ -22,6 +22,6 @@ class DeleteReplyController extends Controller
         $comment = Comment::where('id', $commentId)->firstOrFail();
         $postId = $comment->post->id;
         $comment->delete();
-        return redirect()->route('post.comment.show', ['postId' => $postId])->with('feedback.success', "Reply has been posted successfully!");
+        return redirect()->route('post.comment.show', ['postId' => $postId])->with('feedback.success', "Reply has been deleted successfully!");
     }
 }

@@ -22,11 +22,10 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post' => 'required|max:140',
+            'post' => 'required|max:255',
             'cafeId' => 'exists:cafes,id',
             'images' => 'array|max:4',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-            
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096' 
         ];
     }
 

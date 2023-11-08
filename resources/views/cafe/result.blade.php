@@ -33,10 +33,7 @@
                             @if ($result->image === null)
                             <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36" alt="profile" src="{{ asset('default.png') }}">
                             @else
-                            <?php
-                            $image = str_replace('public/', '', $result->image);
-                            ?>
-                            <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36" alt="profile" src="{{ asset('storage/'.$image) }}">
+                            <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36" alt="profile" src="{{ asset('storage/'. $result->image) }}">
                             @endif
                         </div>
                         <div class="w-full flex flex-col text-left items-start justify-start py-3">

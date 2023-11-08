@@ -22,7 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post' => 'required|max:140'
+            'post' => 'required|max:255'
         ];
     }
 

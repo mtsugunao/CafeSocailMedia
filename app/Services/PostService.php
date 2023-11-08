@@ -49,9 +49,9 @@ class PostService {
             $post->cafe_id = $cafeId;
             $post->save();
             foreach ($images as $image) {
-                $path = Storage::disk("public")->putFile('images', $image);
+                Storage::putFile('public/images', $image);
                 $imageModel = new Image;
-                $imageModel->name = $path;
+                $imageModel->name = $image->hashName();
                 $imageModel->save();
                 $post->images()->attach($imageModel->id);
             }

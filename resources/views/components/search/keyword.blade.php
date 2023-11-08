@@ -3,7 +3,7 @@
         <input
           type="search"
           name="keyword"
-          class="block w-full min-w-0 px-3 py-[0.25rem] text-base font-normal focus:border-2 rounded-l border border-gray-300 bg-transparent bg-clip-padding text-neutral-700 transition duration-200 ease-in-out focus:text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 hover:bg-gray-200"
+          class="block w-full min-w-0 px-3 py-[0.25rem] text-base font-normal focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 rounded-l border border-gray-300 bg-transparent bg-clip-padding text-neutral-700 transition duration-200 ease-in-out focus:text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 hover:bg-gray-200"
           placeholder="Cafe Name, City, Keyword..."
           aria-label="Search"
           aria-describedby="button-addon3"

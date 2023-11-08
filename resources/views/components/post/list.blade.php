@@ -26,23 +26,14 @@
         </div>
     </div>
     <div class="pl-14 pr-3">
-        <div x-data="{ isOpen : false, contentHeight : '' }" x-init="setTimeout(() => { contentHeight = $el.getBoundingClientRect().height }, 100)">
-            <div x-bind:style="isOpen ? 'height: contentHeight + `px`' : 'max-height: 150px; overflow: hidden;'">
-                <a href="{{ route('cafe.detail.show', ['cafeId' => $post->cafe->id]) }}" class="text-base leading-6 font-medium text-black hover:text-gray-300">{{ $post->cafe->name }}</a>
-                <p class="text-lg w-full pr-5 font-medium text-black">{{ nl2br(e($post->content)) }}</p>
-                <x-post.images :images="$post->images" />
-            </div>
-            <div class="flex w-full justify-center items-center">
-                <button @click="isOpen = !isOpen" class="items-center bg-black mt-3 rounded-lg" x-show="!isOpen && contentHeight >= 150">
-                    <span x-text="isOpen ? '' : 'Show more...'" class="text-white px-2"></span>
-                </button>
-            </div>
+        <div>
+            <a href="{{ route('cafe.detail.show', ['cafeId' => $post->cafe->id]) }}" class="text-base leading-6 font-medium text-black hover:text-gray-300">{{ $post->cafe->name }}</a>
+            <p class="text-lg w-full pr-5 font-medium text-black">{{ nl2br(e($post->content)) }}</p>
+            <x-post.images :images="$post->images" />
         </div>
         <div class="flex">
             <div class="w-full">
-
                 <div class="flex items-center justify-start">
-
                     <div class="flex text-center">
                         <x-element.commentbutton :href="route('post.comment.show', ['postId' => $post->id])">
                         </x-element.commentbutton>
