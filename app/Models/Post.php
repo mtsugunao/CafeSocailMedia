@@ -12,7 +12,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', // 他の fillable プロパティも必要に応じてここに追加
+        'user_id',
         'cafe_id',
         'content',
     ];

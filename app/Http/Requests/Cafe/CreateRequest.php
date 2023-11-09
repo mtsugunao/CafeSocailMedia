@@ -29,7 +29,7 @@ class CreateRequest extends FormRequest
             'streetAddress' => 'required',
             'postalCode' => 'required|max:7',
             'description' => 'nullable|string',
-            'parking' => 'nullable|string'
+            'parking' => 'nullable|string',
         ];
     }
 

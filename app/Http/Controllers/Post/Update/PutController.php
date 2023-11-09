@@ -23,6 +23,6 @@ class PutController extends Controller
         $post->content = $request->getPost();
         $post->user_id = $request->userId();
         $post->save();
-        return redirect()->route('post.show', ['postId' => $post->id])->with('feedback.success', "Modified successfully!");
+        return redirect()->route('post.show')->with('feedback.success', "Modified successfully!");
     }
 }

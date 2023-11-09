@@ -29,7 +29,7 @@ class NewUserIntroduction extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: ' Welcome to Cafe-In - Your Social Cafe Hub!',
+            subject: ' Welcome to MugNet - Your Social Cafe Hub!',
         );
     }
 
@@ -39,7 +39,7 @@ class NewUserIntroduction extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.welcom_to_cafein',
+            markdown: 'email.welcom_to_mugnet',
         );
     }
 
