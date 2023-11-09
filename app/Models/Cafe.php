@@ -10,7 +10,7 @@ class Cafe extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $fillable = ['name', 'country', 'province', 'city', 'street_address', 'postalcode', 'description', 'parking', 'user_id'];
     public function posts() {
         return $this->hasMany(Post::class);
     }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('image');
             $table->text('description');
             $table->string('parking');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
