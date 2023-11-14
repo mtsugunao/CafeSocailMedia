@@ -3,7 +3,7 @@
         <a href="#" class="flex-shrink-0 group block">
             <div class="flex items-center mb-3">
                 <div>
-                    <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $post->user->name }}" />
+                    <img class="inline-block lg:h-10 lg:w-10 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? image_url_profiles($post->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $post->user->name }}" />
                 </div>
                 <div class="ml-3">
                     <p class="text-base leading-6 font-medium text-black hover:text-gray-300">

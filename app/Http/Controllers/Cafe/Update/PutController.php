@@ -9,12 +9,15 @@ use App\Models\Cafe;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Menu;
 use App\Services\CafeService;
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 class PutController extends Controller
 {
     /**
      * Handle the incoming request.
      */
+    public function __construct(private ImageManagerInterface $imageManager)
+    {}
     public function __invoke(UpdateRequest $request, CafeService $cafeService)
     {
         $cafe = Cafe::where('id', $request->id())->firstOrFail();
@@ -37,12 +40,11 @@ class PutController extends Controller
         if ($request->hasFile('image')) {
             // Delete the existing image file
             if ($cafe->image !== null) {
-                Storage::disk('public')->delete($cafe->image);
+                $this->imageManager->deleteCafe($cafe->image);
             }
     
             // Upload the new image file
-            $image = $request->file('image');
-            $path = $image->store('cafe', 'public');
+            $path = $this->imageManager->saveCafe($request->file('image'));
             $cafe->image = $path;
         }
         //delete menus

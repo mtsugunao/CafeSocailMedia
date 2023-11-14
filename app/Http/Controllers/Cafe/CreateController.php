@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Cafe\CreateRequest;
 use App\Models\Cafe;
 use App\Models\Menu;
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 class CreateController extends Controller
 {
     /**
      * Handle the incoming request.
      */
+    public function __construct(private ImageManagerInterface $imageManager)
+    {}
     public function __invoke(CreateRequest $request)
     {
         $cafe = new Cafe;
@@ -36,7 +39,7 @@ class CreateController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('cafe', 'public');
+            $path = $this->imageManager->saveCafe($request->file('image'));
             $cafe->image = $path;
         }
 

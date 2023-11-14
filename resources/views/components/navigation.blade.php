@@ -45,7 +45,7 @@
       @if(Route::has('login'))
       @auth
       <a href="{{ url('/dashboard') }}">
-        <img class="lg:h-16 lg:w-16 w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? asset('storage/' . Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
+        <img class="lg:h-16 lg:w-16 w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? image_url_profiles(Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
       </a>
       @else
       <a class="lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="{{ route('login') }}">Sign In</a>
@@ -62,7 +62,7 @@
         @if(Route::has('login'))
         @auth
         <a href="{{ url('/dashboard') }}" class="flex mr-auto text-lg items-center font-semibold text-gray-400 hover:bg-lime-50 hover:text-lime-600 rounded">
-          <img class="w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? asset('storage/' . Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
+          <img class="w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? image_url_profiles(Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
           <span>{{ Auth::user()->name }}</span>
         </a>
         @else

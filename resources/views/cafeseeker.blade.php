@@ -36,7 +36,7 @@
             <div class="pb-8 w-full mx-10">
 
                 <div class="sm:mb-0 mb-3 flex flex-row items-center justify-start space-x-10">
-                    <img class="lg:h-24 lg:w-24 h-16 w-16 rounded-full" src="{{ isset($user->profile_image) ? asset('storage/' . $user->profile_image) : asset('images/user_icon.png') }}" alt="" />
+                    <img class="lg:h-24 lg:w-24 h-16 w-16 rounded-full" src="{{ isset($user->profile_image) ? image_url_profiles($user->profile_image) : asset('images/user_icon.png') }}" alt="" />
                     <p class="text-xl font-bold">{{ $user->name }}</p>
                     @auth
                     @if(Auth::user()->id !== $user->id)

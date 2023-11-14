@@ -8,12 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+    public function __construct(private ImageManagerInterface $imageManager)
+    {}
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -35,7 +38,10 @@ class ProfileController extends Controller
 
         $path = null;
         if ($request->hasFile('picture')) {
-            $path = $request->file('picture')->store('profile-icons', 'public');
+            if ($request->user()->profile_image !== null) {
+                $this->imageManager->deleteProfile($request->user()->profile_image);
+            }
+            $path = $this->imageManager->saveProfile($request->file('picture'));
             $request->user()->profile_image = $path;
         }
 

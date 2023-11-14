@@ -23,6 +23,6 @@ class DeleteTest extends TestCase
         $this->actingAs($user);
         $response = $this->delete('/post/delete/' . $post->id);
 
-        $response->assertRedirect('/post');
+        $response->assertRedirect('/');
     }
 }
