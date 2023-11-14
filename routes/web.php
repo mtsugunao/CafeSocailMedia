@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/about', function() {
     return view('about');
 })->name('about');
@@ -45,7 +41,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/cafe/detail', \App\Http\Controllers\Cafe\DetailController::class)->name('cafe.detail');
 Route::get('/cafe/detail/{cafeId}', \App\Http\Controllers\Cafe\Detail\ShowController::class)->name('cafe.detail.show')->where('cafeId', '[0-9]+');
 
-Route::get('/post', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
+Route::get('/', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
 
 //routing for a specific user
 Route::get('/cafeseekers/{userId}', \App\Http\Controllers\ShowUserController::class)->name('cafeseeker')->where('userId', '[0-9]+');
