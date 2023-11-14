@@ -19,8 +19,8 @@
 
             <!-- content -->
             <div class="overflow-y-auto md:pb-3 pb-15">
-
                 <form action="{{ route('cafe.search.province') }}" method="GET" id="province">
+                    @csrf
                     <div>
                         <h2 class="text-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">Canada</h2>
                         <!-- Canada content -->

@@ -22,7 +22,7 @@
 
             <div class="relative">
                 <form action="{{ route('post.reply.put', ['postId' => $post->id, 'commentId' => $comment->id]) }}" method="post">
-                @method('PUT')
+                    @method('PUT')
                     @csrf
                     @if (session('success'))
                     <x-alert.success>{{ session('success') }}</x-alert.success>
