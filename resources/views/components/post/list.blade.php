@@ -8,7 +8,7 @@
             <a href="{{ route('cafeseeker', ['userId' => $post->user->id]) }}">
                 <div class="flex items-center">
                     <div>
-                        <img class="inline-block w-10 h-10 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="" />
+                        <img class="inline-block w-10 h-10 rounded-full" src="{{ isset($post->user->profile_image) ? image_url_profiles($post->user->profile_image) : asset('images/user_icon.png') }}" alt="" />
                     </div>
                     <div class="ml-3">
                         <a href="{{ route('cafeseeker', ['userId' => $post->user->id]) }}" class="text-base leading-6 font-medium text-black hover:text-gray-300">

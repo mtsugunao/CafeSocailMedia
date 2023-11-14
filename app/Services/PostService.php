@@ -7,8 +7,11 @@ use App\Models\Image;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; 
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 class PostService {
+    public function __construct(private ImageManagerInterface $imageManager)
+    {}
     public function getPosts() {
         return Post::with('images')->orderBy('created_at', 'DESC')->paginate(5);
     }
@@ -49,9 +52,9 @@ class PostService {
             $post->cafe_id = $cafeId;
             $post->save();
             foreach ($images as $image) {
-                Storage::putFile('public/images', $image);
+                $name = $this->imageManager->save($image);
                 $imageModel = new Image;
-                $imageModel->name = $image->hashName();
+                $imageModel->name = $name;
                 $imageModel->save();
                 $post->images()->attach($imageModel->id);
             }
@@ -62,10 +65,7 @@ class PostService {
         DB::transaction(function () use ($postId) {
             $post = Post::where('id', $postId)->firstOrFail();
             $post->images()->each(function ($image) use ($post) {
-                $filePath =  $image->name;
-                if(Storage::exists($filePath)){
-                    Storage::delete($filePath);
-                }
+                $this->imageManager->delete($image->name);
                 $post->images()->detach($image->id);
                 $image->delete();
             });
@@ -83,4 +83,5 @@ class PostService {
             $comment->save();
         });
     }
+    
 }

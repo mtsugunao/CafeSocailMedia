@@ -6,6 +6,7 @@ use App\Services\PostService;
 use Mockery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 
 class PostServiceTest extends TestCase
@@ -16,7 +17,8 @@ class PostServiceTest extends TestCase
      */
     public function test_check_own_post_and_comment(): void
     {
-        $postService = new PostService();
+        $imageManager = Mockery::mock(ImageManagerInterface::class);
+        $postService = new PostService($imageManager);
 
         $mock = Mockery::mock('alias:App\Models\Post');
         $mock->shouldReceive('where->first')->andReturn((object)[

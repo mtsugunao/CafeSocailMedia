@@ -7,8 +7,8 @@
     <div class="grid grid-cols-2 xl:grid-cols-4 gap-1 lg:gap-2 justify-start">
         @foreach($images as $image)
         <div class="w-full h-auto mt-3">
-            <a @click="$dispatch('img-modal', { imgModalSrc: '{{ asset('storage/images/' . $image->name) }}' })" class="cursor-pointer">
-                <img class="object-fit w-full" src="{{ asset('storage/images/' . $image->name) }}">
+            <a @click="$dispatch('img-modal', { imgModalSrc: '{{ image_url($image->name) }}' })" class="cursor-pointer">
+                <img class="object-fit w-full" src="{{ image_url($image->name) }}">
             </a>
         </div>
         @endforeach

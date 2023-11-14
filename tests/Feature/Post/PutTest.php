@@ -29,7 +29,7 @@ class PutTest extends TestCase
 
         $response = $this->put('/post/update/' . $post->id, $requestData);
 
-        $response->assertRedirect('/post');
+        $response->assertRedirect('/');
 
         $response->assertSessionHas('feedback.success', 'Modified successfully!');
 
