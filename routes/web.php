@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/auth/google', [GoogleLoginController::class, 'redirectToGoogle'])
+    ->name('login.google');
+
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback'])
+    ->name('login.google.callback');
 
 //routing for creating a new cafe, modifying, and deleting
 

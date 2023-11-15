@@ -143,7 +143,7 @@
         });
         }
     </script>
-    <script src='//maps.google.com/maps/api/js?key={{ config("services.google-map.apikey") }}=initMap' async defer></script>
+    <script src='https://maps.google.com/maps/api/js?key={{ config("services.google-map.apikey") }}=initMap' async defer></script>
 </body>
 
 </html>
