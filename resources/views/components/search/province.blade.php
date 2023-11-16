@@ -1,4 +1,4 @@
-<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
     <!-- Trigger for Modal -->
     <button type="button" @click="showModal = true" class="w-full bg-transparent hover:bg-lime-500 text-lime-700 font-semibold hover:text-white py-2 px-4 border border-lime-500 hover:border-transparent rounded">Area Search</button>
 
@@ -21,31 +21,31 @@
             <div class="overflow-y-auto md:pb-3 pb-15">
                 <form action="{{ route('cafe.search.province') }}" method="GET" id="province">
                     @csrf
-                    <div>
-                        <h2 class="text-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">Canada</h2>
+                    <div class="mb-5">
+                        <h2 class="text-center mb-4 text-xl font-semibold text-gray-900">Canada</h2>
                         <!-- Canada content -->
-                        <ul class="flex flex-wrap justify-start items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <ul class="grid lg:grid-cols-4 grid-cols-3 lg:gap-5 gap-3 ljustify-center items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row">
                             <!-- Checkbox -->
                             @foreach($caProvince as $index => $province)
-                            <li class="w-1/4 lg:w-1/5 px-5 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <li class="w-full flex">
                                 <div class="flex items-center pl-3">
-                                    <input id="{{ $ca[$index] }}" name="canada[]" type="checkbox" value="{{ $province }}" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="{{ $ca[$index] }}" class="w-full py-3 ml-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">{{ $province }}</label>
+                                    <input id="{{ $ca[$index] }}" name="canada[]" type="checkbox" value="{{ $province }}" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500">
+                                    <label for="{{ $ca[$index] }}" class="w-full py-3 ml-2 text-sm md:text-lg font-medium text-gray-900">{{ $province }}</label>
                                 </div>
                             </li>
                             @endforeach
                         </ul>
                     </div>
                     <div>
-                        <h2 class="text-center mb-4 font-semibold text-xl text-gray-900 dark:text-white">USA</h2>
+                        <h2 class="text-center mb-4 font-semibold text-xl text-gray-900">USA</h2>
                         <!-- USA content -->
-                        <ul class="flex flex-wrap justify-start items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <ul class="grid lg:grid-cols-4 grid-cols-3 lg:gap-5 gap-3 justify-center items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg lg:flex-row">
                             <!-- Checkbox -->
                             @foreach($usStates as $index => $state)
-                            <li class="w-1/4 lg:w-1/5 px-5 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <li class="w-full flex">
                                 <div class="flex items-center pl-3">
-                                    <input id="{{ $us[$index] }}" name="canada[]" type="checkbox" value="{{ $state }}" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="{{ $us[$index] }}" class="w-full py-3 ml-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">{{ $state }}</label>
+                                    <input id="{{ $us[$index] }}" name="canada[]" type="checkbox" value="{{ $state }}" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500">
+                                    <label for="{{ $us[$index] }}" class="w-full py-3 ml-2 text-sm md:text-lg font-medium text-gray-900">{{ $state }}</label>
                                 </div>
                             </li>
                             @endforeach
