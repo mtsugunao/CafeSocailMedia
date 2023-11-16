@@ -8,7 +8,7 @@
         <span class="sr-only" aria-hidden="true">Comment settings</span>
     </button>
     <!-- Dropdown menu -->
-    <div x-show="isOpen" @click.away="isOpen = false" class="relative md:absolute w-16 md:w-24 z-10 mt-2 rounded-lg divide-y divide-gray-100 shadow-lg">
+    <div x-show="isOpen" @click.away="isOpen = false" x-cloak class="relative md:absolute w-16 md:w-24 z-10 mt-2 rounded-lg divide-y divide-gray-100 shadow-lg">
         <ul class="py-2 text-sm text-gray-700 bg-white rounded-lg" aria-labelledby="dropdownMenuIconHorizontalButton">
             <li>
                 <x-element.edit :post="$post" />

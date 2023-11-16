@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mugnet, an interactive web platform, brings together cafe enthusiasts through a unique blend of technology and creativity. Connect across social media platforms and actively contribute as we build our own database, creating a community-driven space for cafe lovers worldwide.">
+  <meta name="keywords" content="cafe, sns, coffee, social media, database">
   <title>MugNet</title>
   @vite(['resources/css/app.css'])
   @livewireStyles
@@ -43,11 +45,11 @@
               on Your Beloved Cafes!
             </h1>
 
-            <div class="flex items-center lg:justify-between w-full lg:w-4/5 lg:flex-row flex-col mx-auto px-8 lg:space-x-4 lg:space-y-0 space-y-4 lg:px-0">
-              <div class="relative flex-grow w-4/5 lg:w-full">
+            <div class="flex lg:flex-row flex-col lg:items-center lg:justify-between w-full lg:w-4/5 mx-auto px-8 lg:space-x-4 lg:space-y-0 space-y-4 lg:px-0">
+              <div class="relative w-full">
                 <x-search.keyword />
               </div>
-              <div class="relative flex-grow lg:w-1/3 w-4/5">
+              <div class="relative lg:w-1/3 w-full">
                 <x-search.province :caProvince="$caProvince" :ca="$ca" :us="$us" :usStates="$usStates"></x-search.province>
               </div>
             </div>
