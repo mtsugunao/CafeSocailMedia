@@ -16,21 +16,23 @@
     @vite(['resources/css/app.css'])
     @livewireStyles
     <style>
-        body {
-            display: flex;
-            flex-flow: column;
+        .absolute-container {
+            position: relative;
+            padding-bottom: 114px;
             min-height: 100vh;
         }
 
-        main {
-            flex: 1;
+        .absolute-footer {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
         }
     </style>
-
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-white">
+    <div class="min-h-screen bg-white absolute-container">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
