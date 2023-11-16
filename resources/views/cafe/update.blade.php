@@ -10,11 +10,21 @@
         .hover-option:hover {
             background-color: red;
         }
+
+        body {
+            display: flex;
+            flex-flow: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
     </style>
 </head>
 
 <body>
-    <section class="bg-gray-100">
+    <main class="bg-gray-100">
         <x-navigation />
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
@@ -113,25 +123,25 @@
                         <div>
                             <x-cafe.form.images></x-cafe.form.images>
                         </div>
-                        
+
                         <div id="menu-fields">
                             <!-- menu field added here -->
                             @if($cafe->menus)
                             @foreach($cafe->menus as $menu)
-                                <div class="menu-field items-center grid grid-cols-1 gap-4 text-center sm:grid-cols-3 py-3">
-                                    <div>
-                                        <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" name="menu_name[]" placeholder="Menu name" value="{{ $menu->name }}">
-                                    </div>
-                                    <div>
-                                        <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" type="text" name="menu_price[]" placeholder="Price" value="{{ $menu->price }}">
-                                    </div>
-                                    <div>
-                                        <button type="button" class="w-full remove-menu bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="menu_ids[]" value="{{ $menu->id }}">
-                                    </div>
+                            <div class="menu-field items-center grid grid-cols-1 gap-4 text-center sm:grid-cols-3 py-3">
+                                <div>
+                                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" name="menu_name[]" placeholder="Menu name" value="{{ $menu->name }}">
                                 </div>
+                                <div>
+                                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" type="text" name="menu_price[]" placeholder="Price" value="{{ $menu->price }}">
+                                </div>
+                                <div>
+                                    <button type="button" class="w-full remove-menu bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="menu_ids[]" value="{{ $menu->id }}">
+                                </div>
+                            </div>
                             @endforeach
                             @endif
                         </div>
@@ -153,8 +163,8 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
-    </section>
+    </main>
+    <x-footer />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

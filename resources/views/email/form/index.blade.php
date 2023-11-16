@@ -7,10 +7,21 @@
   <title>Contact Form</title>
   @vite(['resources/css/app.css'])
   @livewireStyles
+  <style>
+    body {
+      display: flex;
+      flex-flow: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+  </style>
 </head>
 
 <body>
-  <section class="bg-white dark:bg-gray-900">
+  <main class="bg-white dark:bg-gray-900">
     <x-navigation />
     <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
@@ -44,8 +55,8 @@
         <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-lime-700 sm:w-fit hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800">Send message</button>
       </form>
     </div>
-    <x-footer />
-  </section>
+  </main>
+  <x-footer />
   @livewireScripts
 </body>
 

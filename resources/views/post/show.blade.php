@@ -29,11 +29,21 @@
     .options {
       background-color: #e5e7eb;
     }
+
+    body {
+      display: flex;
+      flex-flow: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
   </style>
   @stack('css')
 </head>
 <body>
-  <section class="w-full bg-white dark:bg-wickeddark">
+  <main class="w-full bg-white dark:bg-wickeddark">
     <x-navigation />
     <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div class="flex w-full mx-auto">
@@ -77,8 +87,8 @@
         <a href="{{ route('post.posts') }}" class="px-6 py-3 text-gray-100 no-underline bg-lime-500 rounded hover:bg-lime-600 hover:underline hover:text-gray-200">More Posts</a>
       </div>
     </div>
-    <x-footer />
-  </section>
+  </main>
+  <x-footer />
   @livewireScripts
   <script>
     const countDown = document.querySelector('#count-down');

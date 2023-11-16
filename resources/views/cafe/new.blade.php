@@ -7,21 +7,31 @@
     <title>cafe register</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-    .hover-option:hover {
-        background-color: red;
-    }
-</style>
+        .hover-option:hover {
+            background-color: red;
+        }
+
+        body {
+            display: flex;
+            flex-flow: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="bg-gray-100">
-        <x-navigation/>
+    <main class="bg-gray-100">
+        <x-navigation />
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
                 <div class="lg:col-span-2 lg:py-12">
-                        @if(session('feedback.success'))
-                        <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
-                        @endif
+                    @if(session('feedback.success'))
+                    <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
+                    @endif
                     <p class="max-w-xl text-lg">
                         Assist me in constructing a cafe database. If you're uncertain about the input fields, leave them blank. After registration, any MugNet member can edit the information.
                     </p>
@@ -38,7 +48,7 @@
                         @csrf
                         <div>
                             <label class="sr-only" for="cafeName">Cafe Name</label>
-                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName"/>
+                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" />
                             @error('cafeName')
                             <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
@@ -71,7 +81,7 @@
                         <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
                             <div>
                                 <label class="sr-only" for="city">City</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2"/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" />
                                 @error('city')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
@@ -79,14 +89,14 @@
 
                             <div>
                                 <label class="sr-only" for="streetAddress">Street Address</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3"/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" />
                                 @error('streetAddress')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                             <div>
                                 <label class="sr-only" for="postalCode">Postal Code</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code"/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" />
                                 @error('postalCode')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
@@ -134,8 +144,8 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
-    </section>
+    </main>
+    <x-footer />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

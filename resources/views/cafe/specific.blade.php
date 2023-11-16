@@ -24,12 +24,22 @@
             content: " ";
             background: transparent;
         }
+
+        body {
+            display: flex;
+            flex-flow: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
     </style>
     @stack('css')
 </head>
 
 <body>
-    <section class="w-full bg-white dark:bg-wickeddark">
+    <main class="w-full bg-white dark:bg-wickeddark">
         <x-navigation />
         <div class="relative items-center lg:w-4/5 w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
             <div class="flex w-full mx-auto">
@@ -59,10 +69,10 @@
                         <div class="relative items-center w-full p-3 mx-auto max-w-7xl">
                             <div class="grid w-full grid-cols-1 gap-6 mx-auto sm:grid-cols-2 lg:grid-cols-3">
                                 @foreach($cafe->menus as $menu)
-                                    <div class="inline-flex justify-between w-full">
-                                        <h1 class="mb-3 text-xl font-semibold leading-none tracking-tighter text-neutral-600">{{ $menu->name }}</h1>
-                                        <span>{{ $cafe->country === 'Canada' ? $menu->price . ' CAD' : $menu->price . ' USD' }}</span>
-                                    </div>
+                                <div class="inline-flex justify-between w-full">
+                                    <h1 class="mb-3 text-xl font-semibold leading-none tracking-tighter text-neutral-600">{{ $menu->name }}</h1>
+                                    <span>{{ $cafe->country === 'Canada' ? $menu->price . ' CAD' : $menu->price . ' USD' }}</span>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -88,8 +98,8 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
-    </section>
+    </main>
+    <x-footer />
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -106,41 +116,43 @@
         }, false);
 
         function initMap() {
-        var target = document.getElementById('map');
-        var address =  document.getElementById('map').getAttribute('address-data');
-        var geocoder = new google.maps.Geocoder();  
+            var target = document.getElementById('map');
+            var address = document.getElementById('map').getAttribute('address-data');
+            var geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({ address: address }, function(results, status){
-        if (status === 'OK' && results[0]){
+            geocoder.geocode({
+                address: address
+            }, function(results, status) {
+                if (status === 'OK' && results[0]) {
 
 
-                var map = new google.maps.Map(target, {  
-                    center: results[0].geometry.location,
-                    zoom: 18
-                });
+                    var map = new google.maps.Map(target, {
+                        center: results[0].geometry.location,
+                        zoom: 18
+                    });
 
-                var marker = new google.maps.Marker({
-                    position: results[0].geometry.location,
-                    map: map,
-                    animation: google.maps.Animation.DROP
-                });
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        map: map,
+                        animation: google.maps.Animation.DROP
+                    });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: `<div>
+                    var infowindow = new google.maps.InfoWindow({
+                        content: `<div>
                                 <div class="sm:m-2">
                                 <p class="py-1 font-semibold text-l">{{ $cafe->name }}</p>
                                 <a href="https://www.google.com/maps/search/?api=1&query={{ $address }}" target="_blanck"><span class="hover:underline decoration-sky-500">More details</span></a>
                                 </div>
                             </div>`
                     });
-                infowindow.open(map, marker);
+                    infowindow.open(map, marker);
 
-        }else{ 
-            //住所が存在しない場合の処理
-            alert('Geocode was not successful for the following reason: ' + status);
-            target.style.display = 'none'; // マップを非表示にする例
-        }
-        });
+                } else {
+                    //住所が存在しない場合の処理
+                    alert('Geocode was not successful for the following reason: ' + status);
+                    target.style.display = 'none'; // マップを非表示にする例
+                }
+            });
         }
     </script>
     <script src='https://maps.google.com/maps/api/js?key={{ config("services.google-map.apikey") }}=initMap' async defer></script>
