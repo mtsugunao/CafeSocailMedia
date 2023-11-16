@@ -2,7 +2,7 @@
 'cafe'
 ])
 @auth
-<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false" class="flex justify-start md:justify-end p-3">
+<div x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak class="flex justify-start md:justify-end p-3">
     <div class="flex justify-center items-center">
         <button type="button" @click="showModal = true" class="flex items-center p-2 rounded bg-lime-500 hover:bg-lime-600 text-white border-lime-700 mx-1">
             <div class="mx-1">
