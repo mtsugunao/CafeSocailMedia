@@ -40,7 +40,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center flex-col mt-4" x-data="{ showModal: false, isChecked: false }" @keydown.escape="showModal = false">
+        <div class="flex items-center flex-col mt-4" x-data="{ showModal: false, isChecked: false }" @keydown.escape="showModal = false" x-cloak>
             <!-- Terms of Conditions -->
             <div class="flex items-center justify-center mt-4">
                 <label for="checkbox" class="pr-3">I have read and agree to the&nbsp;<a @click="showModal = true" class="underline hover:text-gray-700 text-gray-500">Terms of Service</a></label>
