@@ -1,4 +1,4 @@
-<div x-data="{ isOpen : false }">
+<div x-data="{ isOpen : false }" x-cloak>
   <nav class="relative px-4 py-4 flex justify-between items-center bg-white">
     <div class="flex h-full w-16">
       <a class="text-3xl font-bold leading-none" href="{{ route('post.show') }}">
