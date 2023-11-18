@@ -21,7 +21,7 @@ class FormControroller extends Controller
     {
         $form_data = $request->validated();
 
-        $email_admin = 'admin@example.com';
+        $email_admin = config('email.admin-mail');
         $email_user = $form_data['email'];
 
         Mail::to($email_admin)->send(new FormAdminMail($form_data));
