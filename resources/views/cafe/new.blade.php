@@ -57,7 +57,7 @@
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <div>
                                 <label for="country" class="sr-only block mb-2 text-sm font-medium text-gray-900">Select an option</label>
-                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
+                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
                                     <option hidden value="">Select a country</option>
                                     <option value="Canada" class="hover-option">Canada</option>
                                     <option value="United States">United States</option>
@@ -69,7 +69,7 @@
 
                             <div>
                                 <label for="province" class="sr-only block mb-2 text-sm font-medium text-gray-900">Select an option</label>
-                                <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
+                                <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
                                     <option hidden value="">Select a country first</option>
                                 </select>
                                 @error('province')

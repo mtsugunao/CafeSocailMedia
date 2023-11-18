@@ -25,7 +25,7 @@ class CreateRequest extends FormRequest
             'post' => 'required|max:255',
             'cafeId' => 'exists:cafes,id',
             'images' => 'array|max:4',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:10000' 
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240' 
         ];
     }
 
