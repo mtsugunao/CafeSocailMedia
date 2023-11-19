@@ -15,7 +15,7 @@ Here is a summary of the information you provided:
 
 Our team is actively reviewing your inquiry and will get back to you as soon as possible. We appreciate your patience during this process.
 
-In the meantime, if you have any further questions or need additional assistance, please do not hesitate to contact us at admin@examle.com.
+In the meantime, if you have any further questions or need additional assistance, please do not hesitate to contact us at {{ config('email.admin-mail') }}.
 
 Thank you for considering us, and we look forward to assisting you.
 

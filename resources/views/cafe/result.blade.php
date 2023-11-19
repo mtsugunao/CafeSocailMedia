@@ -39,15 +39,13 @@
                     {{ $searchResults->links('vendor.pagination.resultPaginate') }}
                     @if($searchResults->isNotEmpty())
                     @foreach ($searchResults as $result)
-                    <div class="container mx-auto flex px-3 flex-row items-start">
-                        <div class="flex justify-start p-3">
-                            @if ($result->image === null)
-                            <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36" alt="profile" src="{{ asset('default.png') }}">
-                            @else
-                            <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36" alt="profile" src="{{ image_url_cafes($result->image) }}">
-                            @endif
-                        </div>
-                        <div class="w-full flex flex-col text-left items-start justify-start py-3">
+                    <div class="container mx-auto px-3 flex flex-row items-start">
+                        @if ($result->image === null)
+                        <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36 flex justify-start mr-5" alt="profile" src="{{ asset('default.png') }}">
+                        @else
+                        <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36 flex justify-start mr-5" alt="profile" src="{{ image_url_cafes($result->image) }}">
+                        @endif
+                        <div class="flex flex-col text-left items-start justify-start py-3">
                             <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="title-font sm:text-2xl text-4xl mb-2 font-medium text-gray-700 hover:text-gray-400">{{ $result->name }}</a>
                             <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="sm:text-lg text-xl font-medium text-gray-600 hover:text-gray-400">{{ $result->city }}&nbsp;<span>{{ $result->province }}&nbsp;</span><span>{{ $result->country }}</span></a>
                         </div>

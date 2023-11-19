@@ -63,7 +63,7 @@
         @auth
         <a href="{{ url('/dashboard') }}" class="flex mr-auto text-lg items-center font-semibold text-gray-400 hover:bg-lime-50 hover:text-lime-600 rounded">
           <img class="w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? image_url_profiles(Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
-          <span>{{ Auth::user()->name }}</span>
+          <span class="pl-3">{{ Auth::user()->name }}</span>
         </a>
         @else
         <div class="h-full w-16">
