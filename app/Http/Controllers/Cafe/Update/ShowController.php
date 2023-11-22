@@ -18,6 +18,5 @@ class ShowController extends Controller
         $cafe = Cafe::where('id', $cafeId)->firstOrFail();
         $menus = Menu::where('cafe_id', $cafeId)->get();
         return view('cafe.update')->with('cafe', $cafe)->with('menus', $menus);
-
     }
 }

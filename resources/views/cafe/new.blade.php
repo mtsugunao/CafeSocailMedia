@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cafe register</title>
+    <link rel="icon" href="{{ asset('images/favicon-32.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}" sizes="180x180">
+    <link rel="icon" type="image/png" href="{{ asset('images/MugNet.png') }}" sizes="192x192">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .hover-option:hover {
@@ -44,23 +47,23 @@
                 </div>
 
                 <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                    <form action="{{ route('cafe.create') }}" method="post" enctype="multipart/form-data" class="space-y-4">
+                    <form action="{{ route('cafe.create') }}" method="post" enctype="multipart/form-data" class="space-y-4" id="cafe-register">
                         @csrf
                         <div>
                             <label class="sr-only" for="cafeName">Cafe Name</label>
-                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" />
+                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" value="{{ old('city') }}" required/>
                             @error('cafeName')
                             <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
                         </div>
 
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" x-data="provinceList()" x-cloak>
                             <div>
-                                <label for="country" class="sr-only block mb-2 text-sm font-medium text-gray-900">Select an option</label>
-                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
-                                    <option hidden value="">Select a country</option>
-                                    <option value="Canada" class="hover-option">Canada</option>
-                                    <option value="United States">United States</option>
+                                <label for="country" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                                <select required id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5" @change="changeProvince">
+                                    <option hidden value="">-- Select Country --</option>    
+                                    <option value="Canada" data-val="1" :selected="'Canada' == '{{ old('country') }}'" class="hover-option">Canada</option>
+                                    <option value="United States" data-val="2" :selected="'United States' == '{{ old('country') }}'">United States</option>
                                 </select>
                                 @error('country')
                                 <x-alert.error>{{ $message}}</x-alert.error>
@@ -68,9 +71,12 @@
                             </div>
 
                             <div>
-                                <label for="province" class="sr-only block mb-2 text-sm font-medium text-gray-900">Select an option</label>
-                                <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
-                                    <option hidden value="">Select a country first</option>
+                                <label for="province" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                                <select required id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
+                                    <option hidden value="">-- Select Province or State --</option>    
+                                <template x-for="(data, index) in datas" :key="index">
+                                        <option :value="data.name" x-text="data.name" :selected="data.name == '{{ old('province') }}'"></option>
+                                    </template>
                                 </select>
                                 @error('province')
                                 <x-alert.error>{{ $message}}</x-alert.error>
@@ -81,7 +87,7 @@
                         <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
                             <div>
                                 <label class="sr-only" for="city">City</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" value="{{ old('city') }}" required/>
                                 @error('city')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
@@ -89,14 +95,14 @@
 
                             <div>
                                 <label class="sr-only" for="streetAddress">Street Address</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" value="{{ old('streetAddress') }}" required/>
                                 @error('streetAddress')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                             <div>
                                 <label class="sr-only" for="postalCode">Postal Code</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" />
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" value="{{ old('postalCode') }}" required/>
                                 @error('postalCode')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
@@ -105,7 +111,7 @@
 
                         <div>
                             <label class="sr-only" for="parking">Parking Access</label>
-                            <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Parking Access" type="text" id="parking" name="parking" />
+                            <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Parking Access" type="text" id="parking" name="parking" value="{{ old('parking') }}" />
                             @error('parking')
                             <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
@@ -113,7 +119,7 @@
 
                         <div>
                             <label class="sr-only" for="description">Description</label>
-                            <textarea class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Description" rows="8" id="description" name="description"></textarea>
+                            <textarea class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Description" rows="8" id="description" name="description">{{ old('description') }}</textarea>
                             @error('description')
                             <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
@@ -136,7 +142,7 @@
                         <button type="button" id="add-menu" class="px-5 py-4 w-full text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-lime-600 lg:px-10 rounded-xl hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">Add Menu and Price</button>
 
                         <div class="mt-4">
-                            <button type="submit" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
+                            <button type="submit" form="cafe-register" class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
                                 Create
                             </button>
                         </div>
@@ -148,37 +154,49 @@
     <x-footer />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#country').on('change', function() {
-                var selectedCountry = $(this).val();
-                var provinceSelect = $('#province');
-                provinceSelect.empty();
+        const arrayData = [];
+        let id = 1;
+        const caProvince = [
+            'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Ontario', 'Prince Edward Island', 'Quebec',
+            'Saskatchewan', 'Northwest Territories', 'Nunavut', 'Yukon'
+        ];
+        const usStates = [
+            'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+            'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+            'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+            'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        ];
+        for (i = 0; i < caProvince.length; i++) {
+            const data = {
+                id: id++,
+                name: caProvince[i],
+                country_category_id: "1"
+            };
+            arrayData.push(data);
+        }
+        for (i = 0; i < usStates.length; i++) {
+            const data = {
+                id: id++,
+                name: usStates[i],
+                country_category_id: "2"
+            };
+            arrayData.push(data);
+        }
 
-                if (selectedCountry === 'Canada') {
-                    const caProvince = [
-                        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Ontario', 'Prince Edward Island', 'Quebec',
-                        'Saskatchewan', 'Northwest Territories', 'Nunavut', 'Yukon'
-                    ];
-
-                    caProvince.forEach(function(province) {
-                        provinceSelect.append('<option value="' + province + '" class="canada-option">' + province + '</option>');
-                    });
-
-                } else if (selectedCountry === 'United States') {
-                    const usStates = [
-                        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
-                        'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-                        'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-                        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-                    ];
-
-                    usStates.forEach(function(state) {
-                        provinceSelect.append('<option value="' + state + '" class="us-option">' + state + '</option>');
-                    });
-
+        function provinceList() {
+            return {
+                id: "",
+                name: "",
+                datas: arrayData,
+                changeProvince() {
+                    var e = document.getElementById("country");
+                    var value = e.options[e.selectedIndex].getAttribute("data-val");
+                    this.datas = arrayData.filter((i) => {
+                        return i.country_category_id == value;
+                    })
                 }
-            });
-        });
+            };
+        }
 
 
         document.addEventListener('DOMContentLoaded', function() {
