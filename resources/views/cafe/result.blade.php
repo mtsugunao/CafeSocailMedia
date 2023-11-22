@@ -42,15 +42,19 @@
                     {{ $searchResults->links('vendor.pagination.resultPaginate') }}
                     @if($searchResults->isNotEmpty())
                     @foreach ($searchResults as $result)
-                    <div class="container mx-auto px-3 flex flex-row items-start">
+                    <div class="container mx-auto px-3 flex flex-row items-center space-x-5 md:space-x-5 justify-start">
                         @if ($result->image === null)
+                        <div class="flex-shrink-0 items-center">
                         <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36 flex justify-start mr-5" alt="profile" src="{{ asset('default.png') }}">
+                        </div>
                         @else
+                        <div class="flex-shrink-0 items-center">
                         <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36 flex justify-start mr-5" alt="profile" src="{{ image_url_cafes($result->image) }}">
+                        </div>
                         @endif
                         <div class="flex flex-col text-left items-start justify-start py-3">
-                            <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="title-font sm:text-2xl text-4xl mb-2 font-medium text-gray-700 hover:text-gray-400">{{ $result->name }}</a>
-                            <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="sm:text-lg text-xl font-medium text-gray-600 hover:text-gray-400">{{ $result->city }}&nbsp;<span>{{ $result->province }}&nbsp;</span><span>{{ $result->country }}</span></a>
+                            <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="title-font md:text-4xl text-2xl mb-2 font-medium text-gray-700 hover:text-gray-400">{{ $result->name }}</a>
+                            <a href="{{ route('cafe.detail.show', ['cafeId' => $result->id]) }}" class="md:text-2xl text-lg font-medium text-gray-600 hover:text-gray-400">{{ $result->city }}&nbsp;<span>{{ $result->province }}&nbsp;</span><span>{{ $result->country }}</span></a>
                         </div>
                     </div>
                     @endforeach
