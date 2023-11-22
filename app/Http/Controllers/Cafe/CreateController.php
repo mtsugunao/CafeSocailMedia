@@ -57,6 +57,6 @@ class CreateController extends Controller
             }
         }
 
-        return redirect()->route('cafe.detail.show', ['cafeId' => $cafe->id])->with('feedback.success', "The new cafe has been created on the database! Enjoy sharing your experiences!");
+        return redirect()->route('cafe.detail.show', ['cafeId' => $cafe->id])->with('feedback.success', "The new cafe has been created on the database! Enjoy sharing your experiences!")->withInput();
     }
 }

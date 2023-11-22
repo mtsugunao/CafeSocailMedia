@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ $user->name . "'s page" }}</title>
+  <link rel="icon" href="{{ asset('images/favicon-32.ico') }}">
   @vite(['resources/css/app.css'])
   @livewireStyles
   <style>

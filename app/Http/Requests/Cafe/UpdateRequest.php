@@ -22,14 +22,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cafeName' => 'required',
+            'cafeName' => 'required|string|max:50',
             'country' => 'required',
             'province' => 'required',
-            'city' => 'required',
-            'streetAddress' => 'required',
+            'city' => 'required|string|max:30',
+            'streetAddress' => 'required|string|max:50',
             'postalCode' => 'required|max:7',
-            'description' => 'nullable|string',
-            'parking' => 'nullable|string',
+            'description' => 'nullable|string|max:511',
+            'parking' => 'nullable|string|max:255',
             'menu_name.*' => 'required',
             'menu_price.*' => 'required'
         ];
@@ -66,7 +66,7 @@ class UpdateRequest extends FormRequest
         return $this->input('postalCode');
     }
 
-    public function parking(): string {
+    public function parking(): ?string {
         return $this->input('parking');
     }
 

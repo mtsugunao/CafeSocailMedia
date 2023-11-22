@@ -22,14 +22,14 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cafeName' => 'required',
+            'cafeName' => 'required|string|max:50',
             'country' => 'required',
             'province' => 'required',
-            'city' => 'required',
-            'streetAddress' => 'required',
-            'postalCode' => 'required|max:7',
-            'description' => 'nullable|string',
-            'parking' => 'nullable|string',
+            'city' => 'required|string|max:30',
+            'streetAddress' => 'required|string|max:50',
+            'postalCode' => 'required|string|max:7',
+            'description' => 'nullable|string|max:511',
+            'parking' => 'nullable|string|max:255',
         ];
     }
 
