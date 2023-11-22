@@ -67,6 +67,6 @@ class PutController extends Controller
         }
 
         $cafe->save();
-        return redirect()->route('cafe.update.show', ['cafeId' => $cafe->id])->with('feedback.success', "Cafe information was successfully modified!");
+        return redirect()->route('cafe.detail.show', ['cafeId' => $cafe->id])->with('feedback.success', "Cafe information was successfully modified!")->withInput();
     }
 }

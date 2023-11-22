@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $cafe->name }}</title>
+    <link rel="icon" href="{{ asset('images/favicon-32.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}" sizes="180x180">
+    <link rel="icon" type="image/png" href="{{ asset('images/MugNet.png') }}" sizes="192x192">
     @vite(['resources/css/app.css'])
     @livewireStyles
     <style>
@@ -57,13 +60,22 @@
                                     <a href="{{ route('cafeseeker', ['userId' => $cafe->user->id]) }}" class="font-semibold text-sm text-gray-500 hover:underline"><span>Registered by&nbsp;</span>{{ $cafe->user->name }}</a>
                                 </div>
                                 <div class="rounded-lg sm:px-2 flex justify-start px-3 md:justify-end">
-                                    <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}" class="text-sm text-gray-500 hover:underline">Update</a>
+                                    <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}" class="text-sm text-gray-600 hover:underline">Update</a>
                                 </div>
                             </div>
                             <x-post.cafe :cafe="$cafe"></x-post.cafe>
                         </div>
                     </div>
-
+                    @if(isset($cafe->description))
+                    <div class="flex w-full px-3 mb-7 items-center">
+                        <p class="text-gray-600 font-semibold text-lg"><strong>Description:&nbsp;</strong><span>{{ $cafe->description }}</span></p>
+                    </div>
+                    @endif
+                    @if(isset($cafe->parking))
+                    <div class="flex w-full px-3 mb-7 items-center">
+                        <p class="text-gray-600 font-semibold text-lg"><strong>Parking information:&nbsp;</strong><span>{{ $cafe->parking }}</span></p>
+                    </div>
+                    @endif
                     <div>
                         @if(isset($cafe->menus))
                         <div class="relative items-center w-full p-3 mx-auto max-w-7xl">

@@ -6,6 +6,9 @@
   <meta name="description" content="Mugnet, an interactive web platform, brings together cafe enthusiasts through a unique blend of technology and creativity. Connect across social media platforms and actively contribute as we build our own database, creating a community-driven space for cafe lovers worldwide.">
   <meta name="keywords" content="cafe, sns, coffee, social media, database">
   <title>MugNet</title>
+  <link rel="icon" href="{{ asset('images/favicon-32.ico') }}">
+  <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}" sizes="180x180">
+  <link rel="icon" type="image/png" href="{{ asset('images/MugNet.png') }}" sizes="192x192">
   @vite(['resources/css/app.css'])
   @livewireStyles
   <style>
@@ -71,8 +74,8 @@
             @if(session('feedback.success'))
             <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
             @endif
-            <div class="pr-5 flex justify-between">
-              <div class="md:flex hidden bg-white lg:m-10 m-5 w-1/3">
+            <div class="px-3 md:flex md:flex-row flex-col md:justify-between">
+              <div class="bg-white lg:m-10 mx-auto md:w-1/3 w-full justify-center">
                 <p>
                   To make a post, please select a café where you visited by searching in eigther search bar or area and share your experiences here for everyone to enjoy! If you don't see any café you wish to post,
                   please register first.
