@@ -70,7 +70,7 @@ class UpdateRequest extends FormRequest
         return $this->input('parking');
     }
 
-    public function description(): string {
+    public function description(): ?string {
         return $this->input('description');
     }
 
