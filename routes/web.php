@@ -88,6 +88,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/contact-form', [\App\Http\Controllers\FormControroller::class, 'index'])->name('form');
     Route::post('/contact-form',  [\App\Http\Controllers\FormControroller::class, 'sendMail']);
+
+    Route::get('dashboard/followers', \App\Http\Controllers\ShowFollowerController::class)->name('dashboard.followers');
+    Route::get('dashboard/followings', \App\Http\Controllers\ShowFollowingController::class)->name('dashboard.followings');
 });
 
 require __DIR__.'/auth.php';
