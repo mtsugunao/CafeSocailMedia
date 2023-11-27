@@ -45,11 +45,10 @@
     <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24">
       <div class="flex w-full mx-auto">
         <div class="relative md:w-4/5 w-full inline-flex items-center mx-auto justify-center align-middle">
-          <div class="pb-8 w-full mx-10">
-
+          <div class="pb-8 w-full mx-3 md:mx-10">
             <div class="sm:mb-0 mb-3 flex flex-row items-center justify-between">
                 <div class="flex justify-start items-center">
-                  <img class="lg:h-24 lg:w-24 h-16 w-16 rounded-full mr-10" src="{{ isset($user->profile_image) ? image_url_profiles($user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $user->name}}" />
+                  <img class="lg:h-24 lg:w-24 h-16 w-16 rounded-full mr-5 md:mr-10" src="{{ isset($user->profile_image) ? image_url_profiles($user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $user->name}}" />
                   <p class="text-xl font-bold">{{ $user->name }}</p>
                 </div>
               @auth

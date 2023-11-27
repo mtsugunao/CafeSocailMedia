@@ -5,7 +5,7 @@
                 <div class="p-6 text-gray-900">
                     @if($followings->count() > 0)
                     @foreach($followings as $following)
-                   <div class="flex flex-row w-full justify-start items-center mb-3">
+                   <div class="flex flex-row w-full justify-between items-center mb-3">
                         <div class="flex justify-start items-center">     
                             <img class="inline-block lg:h-14 lg:w-14 h-12 w-12 lg:mx-10 mr-10 rounded-full" src="{{ isset($following->profile_image) ? image_url_profiles($following->profile_image) : asset('images/user_icon.png') }}" alt="{{ $following->name }}" />
                             <a href="{{ route('cafeseeker', ['userId' => $following->id]) }}" class="font-medium text-gray-400 md:hover:underline">{{ $following->name }}</a>
