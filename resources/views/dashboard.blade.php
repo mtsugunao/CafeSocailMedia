@@ -13,8 +13,8 @@
                         $followers = Auth::user()->followers->count();
                         @endphp
                         <div class="px-5 sm:px-10">
-                            <a href="#" class="inline-block font-semibold items-center">{{ $followingUsers }}&nbsp;<span class="text-gray-400">following</span></a>
-                            <a href="#" class="px-5 sm:px-10 inline-blcok font-semibold items-center">{{ $followers }}&nbsp;<span class="text-gray-400">followers</span></a>
+                            <a href="{{ route('dashboard.followings') }}" class="inline-block font-semibold items-center">{{ $followingUsers }}&nbsp;<span class="text-gray-400">following</span></a>
+                            <a href="{{ route('dashboard.followers') }}" class="px-5 sm:px-10 inline-blcok font-semibold items-center">{{ $followers }}&nbsp;<span class="text-gray-400">followers</span></a>
                         </div>
                     </div>
                     <div class="mb-5">
