@@ -22,7 +22,7 @@
     <div class="pl-14 pr-3">
             <div class="ml-3 more-link">
                     <a href="{{ route('cafe.detail.show', ['cafeId' => $post->cafe->id]) }}" class="text-base leading-6 font-medium text-black hover:text-gray-300">{{ $post->cafe->name }}</a>
-                    <p class="text-base w-full pr-5 font-medium text-black">{{ nl2br(e($post->content)) }}</p>
+                    <p class="text-base w-full pr-5 font-medium text-black">{!! nl2br(e($post->content)) !!}</p>
                     <x-post.images :images="$post->images"/>
             </div>
         <div class="flex">

@@ -4,7 +4,7 @@
     <footer class="flex justify-between items-center mb-2">
         <div class="flex items-center">
             <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="{{ isset($reply->user->profile_image) ? image_url_profiles($reply->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $reply->user->name }}">{{ $reply->user->name }}</p>
-            <p class="text-sm text-gray-600"><time pubdate datetime="2022-02-12" title="February 12th, 2022">{{ Carbon\Carbon::parse($reply->created_at)->format('Y/m/d H:i') }}</time></p>
+            <p class="text-sm text-gray-600"><time>{{ Carbon\Carbon::parse($reply->created_at)->format('Y/m/d H:i') }}</time></p>
         </div>
         <div class="flex w-1/6 justify-end items-center">
             <div class="relative" x-data="{ isOpen: false}">
