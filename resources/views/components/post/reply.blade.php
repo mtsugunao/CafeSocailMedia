@@ -3,13 +3,13 @@
     <article class="p-3 text-base bg-white rounded-lg">
         <footer class="flex justify-between items-center mb-2">
             <div class="flex items-center">
-                <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="{{ isset($post->user->profile_image) ? asset('storage/' . $post->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $comment->user->name }}">{{ $comment->user->name }}</p>
-                <p class="text-sm text-gray-600"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{ Carbon\Carbon::parse($comment->created_at)->format('Y/m/d H:i') }}</time></p>
+                <a href="{{ route('cafeseeker', ['userId' => $comment->user->id])}}" class="inline-block items-center mr-3 text-sm text-gray-900 font-semibold"><img class="mr-2 w-6 h-6 rounded-full inline-block items-center" src="{{ isset($comment->user->profile_image) ? image_url_profiles($comment->user->profile_image) : asset('images/user_icon.png') }}" alt="{{ $comment->user->name}}">{{ $comment->user->name }}</a>
+                <p class="text-sm text-gray-600 items-center"><time>{{ Carbon\Carbon::parse($comment->created_at)->format('Y/m/d H:i') }}</time></p>
             </div>
-            <div class="flex w-1/6 justify-start items-center">
+            <div class="flex w-1/6 justify-end items-center">
                 <div class="relative" x-data="{ 
                         isOpen: false}">
-                    <button @click="isOpen = !isOpen" @keydown.escape="isOpen = false" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
+                    <button @click="isOpen = !isOpen" x-cloak @keydown.escape="isOpen = false" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                         </svg>
@@ -34,8 +34,8 @@
                 </div>
             </div>
         </footer>
-        <div class="flex items-center mt-4 space-x-4">
-            <p class="flex-col"><span>@&nbsp;</span>{{ $post->user->name }}</p>
+        <div class="md:flex flex-col items-start mt-2 md:mt-4">
+            <a href="{{ route('cafeseeker', ['userId' => $post->user->id])}}" class="font-medium text-lime-600 no-underline md:hover:underline decoration-lime-500 md:pr-4"><span>@</span>{{ $post->user->name }}</a>
             <p class="text-gray-500 flex-col">{{ $comment->comment}}</p>
         </div>
         <x-element.modal :comment="$comment" :post="$post"></x-element.modal>
