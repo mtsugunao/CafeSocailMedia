@@ -23,6 +23,12 @@
         main {
             flex: 1;
         }
+
+        .hide-spin::-webkit-inner-spin-button,
+        .hide-spin::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 
@@ -210,7 +216,7 @@
                     <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" name="menu_name[]" placeholder="Menu name" value= "{{ old('menu_name[]') }}">
                 </div>
                 <div>
-                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2" type="text" name="menu_price[]" placeholder="Price" value="{{ old('menu_price[]') }}">
+                    <input class="rounded-lg w-full focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 hide-spin" type="number" step="0.01" name="menu_price[]" placeholder="Price" value="{{ old('menu_price[]') }}">
                 </div>
                 <div>
                     <button type="button" class="w-full remove-menu bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>

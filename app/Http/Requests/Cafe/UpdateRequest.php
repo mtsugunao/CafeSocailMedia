@@ -31,7 +31,7 @@ class UpdateRequest extends FormRequest
             'description' => 'nullable|string|max:511',
             'parking' => 'nullable|string|max:255',
             'menu_name.*' => 'required',
-            'menu_price.*' => 'required'
+            'menu_price.*' => 'required|numeric|max:1000'
         ];
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Menu;
 use App\Models\Cafe;
 class CafeService {
-    public function saveMenu(string $name, int $price, int $cafeId) {
+    public function saveMenu(string $name, float $price, int $cafeId) {
         DB::transaction(function () use ($name, $price, $cafeId) {
             $menu = new Menu();
             $menu->name = $name;
@@ -16,7 +16,7 @@ class CafeService {
         });
     }
 
-    public function updateMenu(int $menuId, string $menuName, int $menuPrice) {
+    public function updateMenu(int $menuId, string $menuName, float $menuPrice) {
         DB::transaction(function () use ($menuId, $menuName, $menuPrice) {
 
             $menuToUpdate = Menu::where('id', $menuId)->firstOrFail();

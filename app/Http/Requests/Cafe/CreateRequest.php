@@ -30,6 +30,7 @@ class CreateRequest extends FormRequest
             'postalCode' => 'required|string|max:7',
             'description' => 'nullable|string|max:511',
             'parking' => 'nullable|string|max:255',
+            'menu_price.*' => 'numeric|max:1000',
         ];
     }
 
