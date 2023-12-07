@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +46,7 @@
   </style>
   @stack('css')
 </head>
+
 <body>
   <main class="w-full bg-white dark:bg-wickeddark">
     <x-navigation />

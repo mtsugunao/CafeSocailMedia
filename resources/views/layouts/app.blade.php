@@ -20,7 +20,7 @@
     <style>
         .absolute-container {
             position: relative;
-            padding-bottom: 114px;
+            padding-bottom: 180px;
             min-height: 100vh;
         }
 
@@ -29,6 +29,12 @@
             position: absolute;
             left: 0;
             bottom: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .absolute-container {
+                padding-bottom: 240px;
+            }
         }
     </style>
 </head>
