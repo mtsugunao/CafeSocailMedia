@@ -31,6 +31,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/notifications', function() {
+    return view('notification');
+})->name('notifications');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -67,7 +71,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/cafe/update/{cafeId}', \App\Http\Controllers\Cafe\Update\PutController::class)->name('cafe.update.put')->where('cafeId', '[0-9]+');
     Route::delete('/cafe/delete/{cafeId}', \App\Http\Controllers\Cafe\DeleteController::class)->name('cafe.delete');
 
-    Route::post('/post/create/{cafeId}', \App\Http\Controllers\Post\CreateController::class)->name('post.create.cafe')->where('cafeId', '[0-9]+');
+    Route::post('/post/create/{cafeId}', [\App\Http\Controllers\Post\CreateController::class, 'create'])->name('post.create.cafe')->where('cafeId', '[0-9]+');
+    Route::get('/mark-as-read', [\App\Http\Controllers\Post\CreateController::class, 'markAsRead'])->name('mark-as-read');
 
     //routing for updating a post
     Route::get('/post/update/{postId}', \App\Http\Controllers\Post\Update\ShowController::class)->name('post.update.show');

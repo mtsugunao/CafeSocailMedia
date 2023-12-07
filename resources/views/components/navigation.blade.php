@@ -33,27 +33,33 @@
       </li>
       <li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ route('form') }}">Contact Us</a></li>
     </ul>
-    <div class="flex lg:hidden">
-      <button class="items-center text-lime-600 p-3" @click="isOpen = !isOpen">
-        <svg class="block h-4 w-4 fill-current" alt="humberger" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <title>Mobile menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="lg:flex hidden">
-      @if(Route::has('login'))
-      @auth
-      <a href="{{ url('/dashboard') }}">
-        <img class="lg:h-16 lg:w-16 w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? image_url_profiles(Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
-      </a>
-      @else
-      <a class="lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="{{ route('login') }}">Sign In</a>
-      @if (Route::has('register'))
-      <a class="py-2 px-6 bg-lime-500 hover:bg-lime-600 text-sm text-white font-bold rounded-xl transition duration-200" href="{{ route('register') }}">Sign up</a>
-      @endif
-      @endauth
-      @endif
+    <div class="items-center flex justify-between">
+    @auth
+      @livewire('post-notification')
+    @endauth
+      <div class="flex lg:hidden">
+        <button class="items-center text-lime-600 p-3" @click="isOpen = !isOpen">
+          <svg class="block h-4 w-4 fill-current" alt="humberger" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Mobile menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="lg:flex hidden">
+        @if(Route::has('login'))
+        @auth
+        <a href="{{ url('/dashboard') }}">
+          <img class="lg:h-16 lg:w-16 w-12 h-12 rounded-full" src="{{ isset(Auth::user()->profile_image) ? image_url_profiles(Auth::user()->profile_image) : asset('images/user_icon.png') }}" alt="" />
+        </a>
+        @else
+        <a class="lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="{{ route('login') }}">Sign In</a>
+        @if (Route::has('register'))
+        <a class="py-2 px-6 bg-lime-500 hover:bg-lime-600 text-sm text-white font-bold rounded-xl transition duration-200" href="{{ route('register') }}">Sign up</a>
+        @endif
+        @endauth
+        @endif
+      </div>
+      </div>
   </nav>
   <div x-show="isOpen" class="relative z-50" x-cloak>
     <div class="fixed inset-0 bg-gray-800 opacity-25" @click.away="isOpen = false"></div>

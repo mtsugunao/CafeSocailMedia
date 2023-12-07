@@ -5,9 +5,13 @@ namespace App\Services;
 use App\Models\Post;
 use App\Models\Image;
 use App\Models\Comment;
+use App\Models\User;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; 
 use App\Modules\ImageUpload\ImageManagerInterface;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewPostNotification;
 
 class PostService {
     public function __construct(private ImageManagerInterface $imageManager)
@@ -58,6 +62,10 @@ class PostService {
                 $imageModel->save();
                 $post->images()->attach($imageModel->id);
             }
+
+            $user = User::where('id', $userId)->firstOrFail();
+            $followers = $user->followers;
+            Notification::send($followers, new NewPostNotification($post));
         });
     }
 

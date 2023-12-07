@@ -57,7 +57,7 @@
                         <div class="flex-col w-full">
                             <div class="flex-row px-3">
                                 <div class="sm:p-2 flex justify-start px-3 py-2 md:justify-end">
-                                    <a href="{{ route('cafeseeker', ['userId' => $cafe->user->id]) }}" class="font-semibold text-sm text-gray-500 hover:underline"><span>Registered by&nbsp;</span>{{ $cafe->user->name }}</a>
+                                    <a href="{{ route('cafeseeker', ['userId' => $cafe->user->id]) }}" class="font-semibold text-sm text-gray-500 hover:underline"><span>{{ $cafe->updated_at > $cafe->created_at ? "Updated by" : "Registered by"}}&nbsp;</span>{{ $cafe->user->name }}</a>
                                 </div>
                                 <div class="rounded-lg sm:px-2 flex justify-start px-3 md:justify-end">
                                     <a href="{{ route('cafe.update.show', ['cafeId' => $cafe->id]) }}" class="text-sm text-gray-600 hover:underline">Update</a>
