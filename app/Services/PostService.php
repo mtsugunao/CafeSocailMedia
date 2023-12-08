@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Modules\ImageUpload\ImageManagerInterface;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewPostNotification;
+use App\Notifications\ReplyNotification;
 
 class PostService {
     public function __construct(private ImageManagerInterface $imageManager)
@@ -89,6 +90,15 @@ class PostService {
             $comment->comment = $reply;
             $comment->parent_comment_id = $commentId;
             $comment->save();
+            //notify the user who replied
+            $parentComment = Comment::find($commentId);
+            $user = User::find($parentComment->user_id);
+            if($user && $user->id !== Auth()->id()){
+            $user->notify(
+                new ReplyNotification($comment)
+            );
+        }
+        
         });
     }
     
