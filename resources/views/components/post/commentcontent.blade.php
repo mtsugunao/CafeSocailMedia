@@ -15,7 +15,7 @@
                 </div>
             </div>
         </a>
-        <div class="flex w-1/6 justify-start items-center">
+        <div class="flex w-1/6 justify-end items-center">
             <x-post.options :postId="$post->id" :userId="$post->user_id" :post="$post"></x-post.options>
         </div>
     </div>
