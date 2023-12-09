@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Notification;
+use App\Notifications\NewFollowerNotification;
 use Illuminate\Support\Facades\Auth;
 
 class Follow extends Component
@@ -31,6 +32,10 @@ class Follow extends Component
             Auth::user()->follows()->attach($this->user);
             $this->isFollowing = true;
             $this->isFollowed = "Following";
+            //notify the user who was followed
+            $this->user->notify(
+                new NewFollowerNotification(Auth::user())
+            );
         }
     }
 }
