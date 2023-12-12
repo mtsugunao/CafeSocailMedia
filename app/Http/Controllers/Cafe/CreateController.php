@@ -26,6 +26,8 @@ class CreateController extends Controller
         $cafe->street_address = $request->streetAddress();
         $cafe->postalcode = $request->postalCode();
         $cafe->user_id = $request->userId();
+        $cafe->wifi = $request->wifi();
+        $cafe->outlet = $request->outlet();
 
         $menuNames = $request->menu();
         $menuPrices = $request->price();

@@ -31,7 +31,9 @@ class UpdateRequest extends FormRequest
             'description' => 'nullable|string|max:511',
             'parking' => 'nullable|string|max:255',
             'menu_name.*' => 'required',
-            'menu_price.*' => 'required|numeric|max:1000'
+            'menu_price.*' => 'required|numeric|max:1000',
+            'wifi' => 'nullable|string|max:10',
+            'outlet' => 'nullable|string|max:10',
         ];
     }
 
@@ -84,5 +86,13 @@ class UpdateRequest extends FormRequest
 
     public function menuIds(): array {
         return $this->input('menu_ids', []);
+    }
+
+    public function wifi(): string {
+        return $this->input('wifi');
+    }
+
+    public function outlet(): string {
+        return $this->input('outlet');
     }
 }

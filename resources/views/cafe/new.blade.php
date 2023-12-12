@@ -57,7 +57,7 @@
                         @csrf
                         <div>
                             <label class="sr-only" for="cafeName">Cafe Name</label>
-                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" value="{{ old('city') }}" required/>
+                            <input class="w-full rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 border-gray-200 p-3 text-sm" placeholder="Cafe Name" type="text" name="cafeName" id="cafeName" value="{{ old('cafeName') }}" required />
                             @error('cafeName')
                             <x-alert.error>{{ $message}}</x-alert.error>
                             @enderror
@@ -67,7 +67,7 @@
                             <div>
                                 <label for="country" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                                 <select required id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5" @change="changeProvince">
-                                    <option hidden value="">-- Select Country --</option>    
+                                    <option hidden value="">-- Select Country --</option>
                                     <option value="Canada" data-val="1" :selected="'Canada' == '{{ old('country') }}'" class="hover-option">Canada</option>
                                     <option value="United States" data-val="2" :selected="'United States' == '{{ old('country') }}'">United States</option>
                                 </select>
@@ -79,8 +79,8 @@
                             <div>
                                 <label for="province" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                                 <select required id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 block w-full p-2.5">
-                                    <option hidden value="">-- Select Province or State --</option>    
-                                <template x-for="(data, index) in datas" :key="index">
+                                    <option hidden value="">-- Select Province or State --</option>
+                                    <template x-for="(data, index) in datas" :key="index">
                                         <option :value="data.name" x-text="data.name" :selected="data.name == '{{ old('province') }}'"></option>
                                     </template>
                                 </select>
@@ -93,7 +93,7 @@
                         <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
                             <div>
                                 <label class="sr-only" for="city">City</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" value="{{ old('city') }}" required/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="City" type="text" id="city" name="city" autocomplete="address-level2" value="{{ old('city') }}" required />
                                 @error('city')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
@@ -101,17 +101,46 @@
 
                             <div>
                                 <label class="sr-only" for="streetAddress">Street Address</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" value="{{ old('streetAddress') }}" required/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Street Address" type="text" id="streetAddress" name="streetAddress" autocomplete="address-level3" value="{{ old('streetAddress') }}" required />
                                 @error('streetAddress')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
                             </div>
                             <div>
                                 <label class="sr-only" for="postalCode">Postal Code</label>
-                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" value="{{ old('postalCode') }}" required/>
+                                <input class="w-full rounded-lg border-gray-200 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Postal" type="text" id="postalCode" name="postalCode" autocomplete="postal-code" value="{{ old('postalCode') }}" required />
                                 @error('postalCode')
                                 <x-alert.error>{{ $message}}</x-alert.error>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="sm:flex flex-row md:justify-between justify-start items-center">
+                            <div class="flex sm:justify-center justify-start border-gray-200 rounded p-3 text-gray-500 items-center">
+                                <p class="pr-3 ext-sm">Wifi:</p>
+                                <!--First radio-->
+                                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                                    <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="wifi" id="wifiRadio1" value="Yes" {{ old('wifi', 'Yes') == 'Yes' ? 'checked' : '' }} />
+                                    <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="wifiRadio1">Yes</label>
+                                </div>
+                                <!--Second radio-->
+                                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                                    <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="wifi" id="wifiRadio2" value="No" {{ old('wifi', 'No') == 'No' ? 'checked' : '' }}/>
+                                    <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="wifiRadio2">No</label>
+                                </div>
+                            </div>
+                            <div class="flex sm:justify-center justify-start border-gray-200 rounded p-3 text-gray-500 items-center">
+                                <p class="pr-3 text-sm">Outlet: </p>
+                                <!--First radio-->
+                                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                                    <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="outlet" id="outletRadio1" value="Yes" {{ old('outlet', 'Yes') == 'Yes' ? 'checked' : '' }} />
+                                    <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="outletRadio1">Yes</label>
+                                </div>
+                                <!--Second radio-->
+                                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                                    <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="outlet" id="outletRadio2" value="No" {{ old('outlet', 'No') == 'No' ? 'checked' : '' }}/>
+                                    <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="outletRadio2">No</label>
+                                </div>
                             </div>
                         </div>
 

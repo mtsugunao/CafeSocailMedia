@@ -31,6 +31,8 @@ class PutController extends Controller
         $cafe->user_id = $request->userId();
         $cafe->description = $request->description();
         $cafe->parking = $request->parking();
+        $cafe->wifi = $request->wifi();
+        $cafe->outlet = $request->outlet();
 
         if ($request->hasFile('image')) {
             // Delete the existing image file

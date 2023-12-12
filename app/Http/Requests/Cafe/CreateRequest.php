@@ -31,6 +31,8 @@ class CreateRequest extends FormRequest
             'description' => 'nullable|string|max:511',
             'parking' => 'nullable|string|max:255',
             'menu_price.*' => 'numeric|max:1000',
+            'wifi' => 'nullable|string|max:10',
+            'outlet' => 'nullable|string|max:10',
         ];
     }
 
@@ -75,6 +77,14 @@ class CreateRequest extends FormRequest
 
     public function price(): ?iterable {
         return $this->input('menu_price');
+    }
+
+    public function wifi(): string {
+        return $this->input('wifi');
+    }
+
+    public function outlet(): string {
+        return $this->input('outlet');
     }
 
 }
