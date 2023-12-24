@@ -42,7 +42,7 @@
                     {{ $searchResults->links('vendor.pagination.resultPaginate') }}
                     @if($searchResults->isNotEmpty())
                     @foreach ($searchResults as $result)
-                    <div class="container mx-auto px-3 flex flex-row items-center space-x-5 md:space-x-5 justify-start">
+                    <div class="container mx-auto px-3 flex flex-row items-center space-x-5 md:space-x-5 justify-start pb-2 md:pb-3">
                         @if ($result->image === null)
                         <div class="flex-shrink-0 items-center">
                         <img class="object-cover object-center rounded h-24 w-24 lg:h-36 lg:w-36 flex justify-start mr-5" alt="profile" src="{{ asset('default.png') }}">
