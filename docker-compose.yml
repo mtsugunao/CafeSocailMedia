@@ -102,6 +102,8 @@ services:
                 - 'http://localhost:7700/health'
             retries: 3
             timeout: 5s
+        environment:
+            MEILI_MASTER_KEY: 'master_key_for_mugnet'
     mailpit:
         image: 'axllent/mailpit:latest'
         ports:

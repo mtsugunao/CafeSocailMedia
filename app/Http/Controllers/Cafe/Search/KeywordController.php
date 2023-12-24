@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Cafe\Search;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
-use Illuminate\Support\Facades\DB;
 
 class KeywordController extends Controller
 {
@@ -33,23 +32,10 @@ class KeywordController extends Controller
         ];
 
         $keywords = $request->input('keyword');
-        $cafes = Cafe::query();
 
         if (isset($keywords)) {
-            $arrayKeywords = explode(" ", $keywords);
-
-            foreach ($arrayKeywords as $keyword) {
-                $cafes->where(function ($query) use ($keyword) {
-                    $query->where('name', 'like', '%' . $keyword . '%')
-                        ->orWhere('country', 'like', '%' . $keyword . '%')
-                        ->orWhere('province', 'like', '%' . $keyword . '%')
-                        ->orWhere('city', 'like', '%' . $keyword . '%')
-                        ->orWhere('street_address', 'like', '%' . $keyword . '%')
-                        ->orWhere('postalcode', 'like', '%' . $keyword . '%');
-                });
-            }
+            $searchResults = Cafe::search($keywords)->orderby('city', 'DESC')->paginate(15); 
         }
-        $searchResults = $cafes->paginate(15);
         return view('cafe.result', compact('searchResults', 'caProvince', 'ca', 'us', 'usStates'));
     }
 }
