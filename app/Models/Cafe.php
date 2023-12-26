@@ -13,15 +13,22 @@ class Cafe extends Model
     use SoftDeletes;
     use Searchable;
     protected $fillable = ['name', 'country', 'province', 'city', 'street_address', 'postalcode', 'description', 'parking', 'user_id'];
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function menus() {
+    public function menus()
+    {
         return $this->hasMany(Menu::class);
     }
 
+    public function searchableAs()
+    {
+        return 'cafes';
+    }
 }

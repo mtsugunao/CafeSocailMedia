@@ -16,8 +16,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@algolia/autocomplete-js": "^1.12.2",
+        "@algolia/autocomplete-theme-classic": "^1.12.2",
         "@alpinejs/collapse": "^3.13.2",
         "@alpinejs/focus": "^3.13.0",
+        "algoliasearch": "^4.22.0",
         "preline": "^1.9.0"
     }
 }
