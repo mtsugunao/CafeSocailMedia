@@ -59,7 +59,6 @@
               @endif
               @endauth
             </div>
-
             @if(session('feedback.success'))
             <x-alert.success>{{ session('feedback.success') }}</x-alert.success>
             @endif

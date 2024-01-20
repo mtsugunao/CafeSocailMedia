@@ -19,6 +19,18 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['string', 'max:30'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'picture' => ['image', 'mimes:gif,png,jpg,webp', 'max:100240'],
+            'favCafe' => ['string', 'nullable'],
+            'favDrink' => ['string', 'nullable', 'max:30'],
+            'yourself' => ['string', 'nullable', 'max:255']
         ];
+    }
+    public function getCafeId(): ?int {
+        return $this->input('favCafe');
+    }
+    public function getFavDrink(): ?string {
+        return $this->input('favDrink');
+    }
+    public function getAboutYou(): ?string {
+        return $this->input('yourself');
     }
 }
