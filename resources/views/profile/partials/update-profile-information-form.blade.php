@@ -22,9 +22,9 @@
         @method('patch')
 
         <div>
-           <x-picture-input />
-           <x-input-error class="mt-2" :messages="$errors->get('picture')" />
-       </div>
+            <x-picture-input />
+            <x-input-error class="mt-2" :messages="$errors->get('picture')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -33,26 +33,47 @@
         </div>
 
         <div>
+            <div class="pb-1">
+                <p>Favourite Cafe</p>
+            </div>
+            <livewire:register-fav-cafe />
+        </div>
+        <div class="flex gap-2 justify-between w-full items-center">
+            <label class="text-sm sm:text-lg text-gray-600" for="favDrink">Favourite Drink</label>
+            <input class="sm:w-1/2 w-full rounded-lg border-gray-400 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="drink..." type="text" id="favDrink" name="favDrink" value="{{ old('favDrink', Auth::user()->favDrink) }}" />
+            @error('favDrink')
+            <x-alert.error>{{ $message}}</x-alert.error>
+            @enderror
+        </div>
+        <div class="flex gap-2 justify-between items-center w-full">
+            <label class="text-sm sm:text-lg text-gray-600" for="yourself">About Yourself!</label>
+            <textarea class="sm:w-1/2 w-full rounded-lg border-gray-400 focus:ring-0 focus:outline-none focus:border-lime-400 focus:border-2 p-3 text-sm" placeholder="Yourself..." type="text" id="yourself" name="yourself" row="6">{{ Auth::user()->aboutYou }}</textarea>
+            @error('yourself')
+            <x-alert.error>{{ $message}}</x-alert.error>
+            @enderror
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+            <div>
+                <p class="text-sm mt-2 text-gray-800">
+                    {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
+                    <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Click here to re-send the verification email.') }}
+                    </button>
+                </p>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
+                @if (session('status') === 'verification-link-sent')
+                <p class="mt-2 font-medium text-sm text-green-600">
+                    {{ __('A new verification link has been sent to your email address.') }}
+                </p>
+                @endif
+            </div>
             @endif
         </div>
 
@@ -60,13 +81,7 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>

@@ -31,6 +31,9 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
         $request->user()->fill($request->safe()->only(['name', 'email']));
+        $request->user()->cafe_id = $request->getCafeId();
+        $request->user()->favDrink = $request->getFavDrink();
+        $request->user()->aboutYou = $request->getAboutYou();
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'profile_image',
         'google_id',
+        'cafe_id',
+        'favDrink',
+        'aboutYou'
     ];
 
     /**
