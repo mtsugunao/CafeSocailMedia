@@ -14,12 +14,7 @@ class RegisterFavCafe extends Component
     public function render()
     {
         $this->cafe = auth()->user()->cafe_id;
-        if(!empty($this->keyword)){
-            return view('livewire.register-fav-cafe', [
-                'searchResults' => Cafe::search($this->keyword)->paginate(5),
-                'cafe' => Cafe::where('id', $this->cafe)->firstOrFail()
-            ]);
-        }else if(empty($this->keyword) && isset($this->cafe)){
+        if(empty($this->keyword) && isset($this->cafe)){
             return view('livewire.register-fav-cafe', [
                 'searchResults' => Cafe::paginate(5),
                 'cafe' => Cafe::where('id', $this->cafe)->firstOrFail(),
@@ -32,6 +27,17 @@ class RegisterFavCafe extends Component
     }
     public function searchCafe()
     {
-        $this->resetPage();
+        if(auth()->user()->cafe_id){
+            $this->cafe = auth()->user()->cafe_id;
+            return view('livewire.register-fav-cafe', [
+                'searchResults' => Cafe::search($this->keyword)->paginate(5),
+                'cafe' => Cafe::where('id', $this->cafe)->firstOrFail()
+            ]);
+        }else{
+            return view('livewire.register-fav-cafe', [
+                'searchResults' => Cafe::search($this->keyword)->paginate(5),
+                'cafe' => null,
+            ]);
+        }
     }
 }
